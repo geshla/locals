@@ -1,49 +1,683 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Levi's Lot Archive</title>
-  <meta name="description" content="A visual timeline and index of Levi's jeans: Red Tab lot numbers, Orange Tab, Levi's Vintage Clothing reissues, premium lines and collaborations.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Victoria's 20 Mental Health and Wellbeing Locals: locations, providers, partners, contacts and opening timeline.">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Mental Health and Wellbeing Locals of Victoria 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one long scroll — opener stats, tiles grid, map with side list, comparison table, opening timeline. Eucalypt neutrals; three wave colours carry meaning everywhere. */
+:root{
+  --bg:#F2F4F1; --surface:#FFFFFF; --ink:#15302B; --muted:#5A6D68; --line:#D5DDD9;
+  --accent:#0F6B5C; --accent-ink:#FFFFFF; --land:#E2E9E4; --land-edge:#B9C7C1; --sea:#D8E6EB;
+  --w1:#128A74; --w2:#4F5BD5; --w3:#B97C08; --fire:#C2410C;
+  --sky-a:#E7F0EE; --sky-b:#F6F1E4;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --shadow:0 10px 30px -12px rgba(21,48,43,.35);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1A18; --surface:#16241F; --ink:#E5EEEA; --muted:#93A69F; --line:#2A3C37;
+  --accent:#4FC2A8; --accent-ink:#0B1714; --land:#1C2C28; --land-edge:#35504A; --sea:#0E1D24;
+  --w1:#3FC4A6; --w2:#8C95F2; --w3:#EDB547; --fire:#F97F4F; --sky-a:#18302C; --sky-b:#20261C;
+  --shadow:0 10px 30px -12px rgba(0,0,0,.7); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0F1A18; --surface:#16241F; --ink:#E5EEEA; --muted:#93A69F; --line:#2A3C37;
+  --accent:#4FC2A8; --accent-ink:#0B1714; --land:#1C2C28; --land-edge:#35504A; --sea:#0E1D24;
+  --w1:#3FC4A6; --w2:#8C95F2; --w3:#EDB547; --fire:#F97F4F; --sky-a:#18302C; --sky-b:#20261C;
+  --shadow:0 10px 30px -12px rgba(0,0,0,.7); color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h2{font-size:clamp(1.2rem,2vw,1.45rem);font-weight:800;letter-spacing:-.015em}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+section{padding-block:44px 8px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 24px;margin-bottom:22px}
+.sec-head>div{display:grid;gap:8px;min-width:0}
+a{color:var(--accent)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+
+/* opener */
+header.hero{padding-block:32px 4px}
+.hero h1{font-size:clamp(1.45rem,2.6vw,1.85rem);font-weight:800;letter-spacing:-.02em;max-width:30ch}
+.hero h1 em{font-style:normal;color:inherit}
+.hero .lede{margin-top:16px;font-size:1.08rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:30px}
+.fact{background:var(--surface);padding:16px 18px;display:grid;gap:4px;align-content:start}
+.fact b{font-family:var(--display);font-size:1.5rem;font-weight:800;letter-spacing:-.02em;line-height:1}
+.fact span{font-size:.86rem;color:var(--muted);line-height:1.35}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-size:.88rem;color:var(--muted)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+/* tiles */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 13px;font-size:.88rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.tile{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-rows:auto 1fr;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .18s ease, box-shadow .18s ease}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.tile:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tile .art{position:relative;aspect-ratio:16/9;max-width:100%}
+.tile .art svg{display:block;width:100%;height:100%}
+.tile .wave{position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;padding:3px 8px;border-radius:999px;background:var(--surface);color:var(--ink)}
+.tile .wave i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.tile .body{padding:14px 16px 16px;display:grid;gap:6px;align-content:start}
+.tile h3{font-size:1.02rem;font-weight:700;letter-spacing:-.01em}
+.tile .serves{font-size:.86rem;color:var(--muted);line-height:1.35}
+.tile .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{font-size:.74rem;border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--muted);white-space:nowrap}
+.tag.fire{border-color:var(--fire);color:var(--fire)}
+
+/* map */
+.mapbox{display:grid;grid-template-columns:300px minmax(0,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface);min-height:560px}
+.side{display:grid;grid-template-rows:auto 1fr;border-right:1px solid var(--line);min-height:0;max-height:620px}
+.search{padding:12px;border-bottom:1px solid var(--line);display:grid;gap:6px}
+.search input{width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.search small{color:var(--muted);font-size:.78rem}
+.list{overflow:auto;margin:0;padding:6px;list-style:none}
+.list button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:12px 1fr;gap:2px 10px;width:100%;padding:9px 10px;border-radius:10px;cursor:pointer}
+.list button:hover,.list button[aria-current="true"]{background:var(--bg)}
+.list button:focus-visible{outline:2px solid var(--accent)}
+.list i{width:10px;height:10px;border-radius:50%;margin-top:6px}
+.list b{font-weight:700;font-size:.95rem}
+.list span{grid-column:2;font-size:.8rem;color:var(--muted);line-height:1.3}
+.list .empty{padding:14px;color:var(--muted);font-size:.9rem}
+.stage{position:relative;min-width:0;background:var(--sea);overflow:hidden;touch-action:none}
+.stage svg{display:block;width:100%;height:100%;min-height:440px;cursor:grab}
+.stage svg.drag{cursor:grabbing}
+.vic{fill:var(--land);stroke:var(--land-edge);stroke-width:1;vector-effect:non-scaling-stroke}
+.town-lbl{font-family:var(--mono);fill:var(--muted);pointer-events:none}
+.pin{cursor:pointer}
+.pin circle.dot{stroke:var(--surface);vector-effect:non-scaling-stroke;stroke-width:2}
+.pin.on circle.dot{stroke:var(--ink);stroke-width:3}
+.pin .halo{fill:none;stroke-width:2;vector-effect:non-scaling-stroke;opacity:.45}
+.ext{fill:none;stroke:var(--fire);stroke-dasharray:3 3;stroke-width:1.6;vector-effect:non-scaling-stroke;cursor:pointer}
+.ctrls{position:absolute;right:12px;top:12px;display:grid;gap:6px}
+.ctrls button{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:1.1rem;box-shadow:var(--shadow)}
+.ctrls button.txt{width:auto;padding:0 10px;font-size:.78rem;font-family:var(--mono)}
+.pop{position:absolute;width:min(290px,calc(100% - 24px));background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;z-index:3}
+.pop .art{aspect-ratio:16/7}
+.pop .art svg{display:block;width:100%;height:100%}
+.pop .in{padding:12px 14px 14px;display:grid;gap:6px}
+.pop h3{font-size:1rem}
+.pop p{margin:0;font-size:.85rem;color:var(--muted);line-height:1.4}
+.pop .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.btn{display:inline-flex;align-items:center;gap:6px;border-radius:9px;padding:7px 11px;font-size:.84rem;font-weight:700;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.pop .x{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:0;background:var(--surface);cursor:pointer;font-size:1rem;line-height:1}
+.mapnote{font-size:.8rem;color:var(--muted);margin-top:10px}
+.mapnote .dash{display:inline-block;width:12px;height:12px;border:1.6px dashed var(--fire);border-radius:50%;vertical-align:-2px;margin-right:4px}
+
+/* compare */
+.bars{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:10px;align-content:start}
+.panel h3{font-size:1rem}
+.bar{display:grid;grid-template-columns:110px 1fr 28px;gap:10px;align-items:center;font-size:.85rem}
+.bar .track{height:10px;background:var(--bg);border-radius:6px;overflow:hidden;display:flex}
+.bar .track b{display:block;height:100%}
+.bar em{font-style:normal;font-family:var(--mono);text-align:right}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:.88rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;position:sticky;top:0;background:var(--surface)}
+th button{all:unset;cursor:pointer}
+th button:focus-visible{outline:2px solid var(--accent)}
+th[aria-sort] button::after{content:" ↕";opacity:.4}
+th[aria-sort="ascending"] button::after{content:" ↑";opacity:1}
+th[aria-sort="descending"] button::after{content:" ↓";opacity:1}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--bg)}
+td.c{text-align:center}
+.yes{color:var(--accent);font-weight:700}
+.no{color:var(--muted);opacity:.6}
+.dotc{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px}
+.mini{display:inline-flex;gap:2px;vertical-align:middle}
+.mini i{width:6px;height:12px;border-radius:2px;background:var(--accent);opacity:.75}
+
+/* timeline */
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;overflow-x:auto}
+.chartbox svg{display:block;min-width:720px;width:100%;height:auto}
+.ax{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.ms{display:grid;gap:0;margin-top:22px;border-left:2px solid var(--line);margin-left:6px}
+.ms li{list-style:none;position:relative;padding:0 0 18px 22px}
+.ms li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--muted)}
+.ms li.w1::before{background:var(--w1);border-color:var(--w1)}
+.ms li.w2::before{background:var(--w2);border-color:var(--w2)}
+.ms li.w3::before{background:var(--w3);border-color:var(--w3)}
+.ms li.fire::before{border-color:var(--fire)}
+.ms time{font-family:var(--mono);font-size:.78rem;color:var(--muted);display:block}
+.ms b{font-family:var(--display);font-size:.98rem}
+.ms p{margin:2px 0 0;color:var(--muted);font-size:.9rem;max-width:70ch}
+.ms ul{margin:0;padding:0}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.team .panel p{margin:0;color:var(--muted);font-size:.9rem}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+
+/* dialog */
+dialog{border:0;padding:0;border-radius:18px;max-width:min(640px,calc(100vw - 24px));width:100%;background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+dialog::backdrop{background:rgba(10,20,18,.55)}
+.dlg .art{aspect-ratio:16/6}
+.dlg .art svg{display:block;width:100%;height:100%}
+.dlg .in{padding:20px 22px 22px;display:grid;gap:16px}
+.dlg h3{font-size:1.35rem;font-weight:800;letter-spacing:-.02em}
+.dlg dl{display:grid;grid-template-columns:130px minmax(0,1fr);gap:8px 14px;margin:0;font-size:.92rem}
+.dlg dt{color:var(--muted);font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;padding-top:3px}
+.dlg dd{margin:0;min-width:0}
+.sites{display:grid;gap:8px}
+.site{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.site span{min-width:0}
+.dlg .close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:0;background:var(--surface);cursor:pointer;font-size:1.1rem;box-shadow:var(--shadow)}
+.notes{margin:0;padding-left:18px;color:var(--muted);font-size:.9rem}
+.phone{font-family:var(--mono);user-select:all}
+footer{padding-block:48px 40px;color:var(--muted);font-size:.84rem}
+footer ol{padding-left:18px;margin:8px 0 0;display:grid;gap:4px}
+footer a{word-break:break-word}
+
+@media (max-width:760px){
+  .mapbox{grid-template-columns:1fr}
+  .side{border-right:0;border-bottom:1px solid var(--line);max-height:260px}
+  .stage svg{min-height:380px}
+  .dlg dl{grid-template-columns:1fr}
+  .dlg dt{padding-top:0}
+  .bar{grid-template-columns:90px 1fr 24px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
 </head>
 <body>
-  <header class="masthead">
-    <div class="wrap">
-      <p class="kicker">An unofficial archive</p>
-      <h1>Levi's <span>Lot</span> Archive</h1>
-      <p class="lede">Every numbered fit, reissue, premium line and collaboration we could document, from the 1873 waist overall to today. Drawings are original fit diagrams; tap any jean for links to real photos.</p>
+
+
+<div class="wrap">
+<header class="hero">
+  <h1>Mental Health and Wellbeing <em>Locals</em> of Victoria 2026</h1>
+  <div class="facts" id="facts"></div>
+  <div class="legend">
+    <span><i style="background:var(--w1)"></i>Opened Dec 2022</span>
+    <span><i style="background:var(--w2)"></i>Opened Dec 2023</span>
+    <span><i style="background:var(--w3)"></i>Opened Nov 2025</span>
+    <span><i style="background:transparent;border:1.6px dashed var(--fire)"></i>2026 bushfire extension</span>
+  </div>
+</header>
+
+<section id="locals">
+  <div class="sec-head">
+    <div><div class="eyebrow">The 20 Locals</div><h2>Pick a Local</h2></div>
+    <div class="filters" role="group" aria-label="Filter Locals">
+      <button class="chip" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" data-f="metro" aria-pressed="false">Metro</button>
+      <button class="chip" data-f="regional" aria-pressed="false">Regional</button>
+      <button class="chip" data-f="1" aria-pressed="false">2022</button>
+      <button class="chip" data-f="2" aria-pressed="false">2023</button>
+      <button class="chip" data-f="3" aria-pressed="false">2025</button>
     </div>
-  </header>
+  </div>
+  <div class="tiles" id="tiles"></div>
+</section>
 
-  <nav class="controls" aria-label="View and filters">
-    <div class="wrap">
-      <div class="tabs" role="tablist">
-        <button role="tab" data-view="timeline" aria-selected="true">Timeline</button>
-        <button role="tab" data-view="models" aria-selected="false">Model index</button>
-        <button role="tab" data-view="collabs" aria-selected="false">Collaborations</button>
+<section id="map">
+  <div class="sec-head">
+    <div><div class="eyebrow">Where they are</div><h2>Map</h2></div>
+    <p class="lede" style="max-width:46ch">Search or pick from the list to fly to a Local. Click a pin for details and directions. Drag to pan.</p>
+  </div>
+  <div class="mapbox">
+    <div class="side">
+      <div class="search">
+        <label for="q" class="eyebrow">Search Locals, towns, providers</label>
+        <input id="q" type="search" placeholder="e.g. Geelong, Wellways, Mildura" autocomplete="off">
+        <small id="qcount"></small>
       </div>
-      <div class="filters">
-        <div class="chips" id="chips" aria-label="Filter by line"></div>
-        <input id="search" type="search" placeholder="Search lot or name… e.g. 505, bell, 1947" aria-label="Search">
-      </div>
+      <ul class="list" id="list"></ul>
     </div>
-  </nav>
+    <div class="stage" id="stage">
+      <svg id="svg" viewBox="-10 -10 740 540" aria-label="Map of Victoria showing Locals">
+        <path class="vic" d="M335.7,444.1L332.9,445.3L331.3,447.5L329.3,448.0L327.3,452.5L327.8,453.6L326.1,453.0L323.4,454.0L321.2,453.9L320.3,454.7L318.8,454.7L318.2,453.9L316.3,454.9L316.3,452.7L312.5,448.0L304.8,440.4L297.7,435.4L299.9,435.5L304.2,437.2L306.8,440.6L310.6,441.9L313.4,441.9L319.2,439.9L324.4,436.7L324.8,435.4L323.9,434.6L327.3,430.3L327.8,426.3L328.8,426.3L330.2,425.1L332.2,421.4L334.7,419.6L335.2,415.8L334.8,412.4L335.2,412.2L334.8,412.3L333.2,407.7L330.2,404.1L329.4,403.7L328.3,404.6L326.7,403.2L324.1,397.6L324.2,394.3L322.9,391.1L320.2,389.3L319.7,389.7L319.4,389.0L318.4,389.2L318.3,389.9L317.8,389.0L317.9,390.0L317.1,389.3L317.8,390.2L317.0,389.8L317.6,391.1L318.6,391.6L317.7,392.3L315.6,391.8L314.8,390.9L310.5,392.5L309.2,395.5L309.3,397.3L304.3,399.3L297.6,405.2L292.9,405.5L290.3,408.8L286.9,409.6L286.2,414.2L284.6,412.8L283.3,413.4L282.8,412.7L281.2,414.2L277.5,412.4L276.1,413.5L276.2,414.7L274.6,415.5L275.0,416.0L274.2,418.7L274.9,419.5L276.5,419.3L277.9,420.5L279.0,420.5L279.7,417.4L281.1,420.0L283.9,421.4L290.2,420.5L296.0,415.7L300.9,417.0L303.1,419.7L303.0,422.3L302.0,426.0L301.1,427.0L301.7,425.2L300.4,424.7L295.4,430.1L296.5,431.6L296.2,432.0L299.3,431.5L298.3,432.4L295.1,432.6L294.6,434.2L288.7,432.2L286.3,432.5L285.2,433.3L285.6,434.0L279.9,433.2L272.3,437.3L271.9,439.0L270.0,439.8L268.1,442.2L266.3,443.3L266.1,444.5L261.8,445.7L260.3,446.9L260.5,447.9L256.6,448.5L254.3,451.9L248.8,452.6L244.3,458.2L244.1,459.3L244.9,459.8L243.9,461.5L239.8,464.3L238.8,467.3L235.6,470.5L235.3,472.2L233.4,472.9L233.0,474.3L226.6,475.7L220.7,478.7L219.8,480.2L220.5,481.1L219.5,481.8L219.4,482.9L217.9,484.1L215.5,484.6L210.6,490.6L207.1,490.8L200.6,483.3L198.6,483.1L194.9,480.4L192.6,480.7L190.6,480.0L187.8,481.3L187.2,482.3L185.1,481.6L173.0,470.1L171.0,469.8L171.0,469.1L167.8,467.4L162.5,467.0L161.6,467.7L158.7,466.0L155.3,465.5L154.9,464.2L149.8,461.9L141.5,454.5L132.0,447.2L126.3,444.4L125.3,444.5L125.4,445.1L124.7,445.4L116.8,439.9L111.8,440.6L110.0,441.6L108.0,441.5L106.7,442.8L106.6,443.8L107.5,444.1L106.7,444.6L98.8,444.1L87.5,436.0L81.7,432.8L77.9,431.6L66.8,430.3L61.8,431.8L55.7,436.3L56.2,439.2L57.4,439.2L57.5,441.2L59.5,444.3L57.8,444.3L57.6,445.6L56.7,444.3L53.4,444.0L52.2,445.6L52.0,447.6L51.0,448.3L49.3,446.5L49.9,445.5L49.1,444.0L44.5,441.2L42.4,441.0L40.2,441.9L40.7,444.6L37.6,443.7L36.8,442.7L36.9,441.5L39.5,438.9L39.0,437.0L36.3,432.5L31.4,427.1L26.0,422.1L19.8,417.7L10.2,412.2L5.2,410.6L5.9,351.2L5.0,179.9L5.0,3.1L5.5,4.7L6.4,5.0L6.0,5.9L6.9,6.0L6.4,6.6L7.0,8.1L7.8,7.0L8.9,7.5L8.2,7.8L8.1,8.9L9.8,11.0L10.7,8.6L11.4,9.3L11.3,11.1L13.1,10.0L13.6,11.3L14.7,11.2L15.0,12.7L15.7,12.0L14.9,10.7L15.4,10.1L17.5,11.5L18.8,10.8L19.3,11.4L20.1,10.5L20.1,11.4L19.3,11.8L20.1,11.9L20.1,13.2L21.1,13.3L21.8,12.3L22.7,14.2L23.4,13.8L22.8,12.9L24.3,11.2L25.6,11.2L26.1,12.4L27.1,11.1L27.5,12.3L27.2,13.7L28.5,12.8L30.4,15.4L31.8,16.4L33.1,16.2L32.8,17.5L33.8,17.7L33.7,18.9L35.4,17.4L35.6,16.2L36.4,16.1L37.2,17.7L37.3,17.0L38.2,17.2L38.7,18.5L40.3,17.8L40.3,19.6L42.4,19.6L42.3,21.0L43.2,21.8L43.7,21.1L46.2,21.3L47.2,20.5L49.1,23.1L48.1,24.1L49.1,25.3L48.1,26.0L48.4,26.6L50.3,26.1L50.3,24.1L51.4,25.1L52.4,24.1L54.3,24.9L54.7,23.7L55.8,24.1L55.9,23.4L54.7,22.7L55.8,21.2L54.3,20.1L55.9,19.9L57.0,20.6L56.5,18.9L57.8,19.5L58.1,17.1L61.7,15.1L64.1,14.6L65.1,16.5L65.8,15.5L65.8,14.1L67.1,15.3L68.4,14.8L67.6,15.6L68.0,16.2L69.6,15.2L69.6,16.7L70.3,16.2L74.7,18.2L75.4,17.4L75.6,18.1L76.8,17.9L77.5,18.7L78.4,17.4L78.1,16.5L79.4,16.1L81.1,16.5L81.7,17.6L81.4,18.5L82.0,18.8L82.9,16.9L84.9,18.6L84.9,17.0L85.5,16.3L89.0,17.5L88.3,15.5L90.2,14.9L90.6,15.5L89.6,16.8L89.2,16.5L89.5,17.3L93.3,18.1L92.5,20.1L93.4,20.7L93.8,22.4L96.8,22.5L96.8,20.7L98.0,21.1L98.9,19.9L100.4,20.2L99.9,22.1L100.5,22.1L100.5,23.3L101.4,23.4L101.8,22.6L103.0,23.3L104.7,23.1L105.8,26.4L106.0,25.4L106.6,26.0L105.9,27.4L106.6,28.2L106.6,29.6L105.7,30.5L107.0,31.5L107.0,33.5L105.7,34.7L106.0,35.7L107.3,35.6L108.5,34.5L109.0,35.4L110.0,34.7L111.0,35.6L109.8,36.1L109.8,37.7L110.6,37.3L113.5,38.9L116.5,37.7L118.7,38.8L117.8,39.7L118.2,41.3L116.1,41.2L117.3,41.5L116.5,42.1L116.9,43.8L116.1,43.6L115.1,44.7L115.9,46.2L115.2,47.2L116.2,47.3L115.8,48.2L116.5,48.5L115.3,52.0L117.4,51.7L117.7,52.8L116.2,53.5L115.8,54.9L116.6,55.4L117.2,54.1L118.6,54.3L117.0,56.5L119.0,57.3L116.4,58.0L117.3,58.2L117.2,59.1L118.2,59.9L119.4,59.2L119.6,61.8L121.1,61.2L121.4,62.5L122.6,62.5L123.1,63.4L123.7,63.1L122.9,60.9L124.4,61.4L124.8,62.7L123.6,63.8L124.7,64.3L123.9,65.7L124.4,66.3L123.7,66.6L124.1,67.7L123.2,68.4L124.6,69.0L125.6,68.6L124.7,70.2L124.8,72.0L126.7,71.9L126.8,73.1L128.1,74.1L126.9,75.0L128.4,75.4L126.9,78.9L127.9,79.1L127.5,79.9L128.9,81.0L129.6,80.3L130.0,81.3L130.9,81.3L131.4,82.5L132.3,81.7L136.1,83.5L137.4,83.4L138.4,82.5L138.6,81.3L136.5,80.7L136.3,77.9L137.8,78.5L139.7,77.2L140.2,78.6L141.1,78.9L141.7,78.4L140.9,77.9L141.1,77.2L142.7,77.5L141.6,76.4L142.1,75.1L141.1,73.0L141.6,72.1L143.6,72.7L143.5,71.3L141.9,70.2L142.9,67.5L143.5,67.2L142.0,66.7L143.1,66.4L142.9,64.8L144.0,65.0L144.6,64.2L146.3,65.3L147.7,64.8L147.8,63.9L146.4,63.6L146.6,62.7L149.5,63.0L148.4,61.9L149.3,61.5L150.1,59.6L151.5,61.1L149.8,64.0L150.6,64.8L151.6,63.9L151.1,65.8L152.2,66.2L152.6,65.0L152.7,65.9L153.8,66.3L154.0,67.6L154.9,66.9L156.1,67.7L155.1,69.0L156.4,70.0L155.5,71.5L156.5,71.4L156.8,72.5L157.6,72.2L157.6,73.0L158.7,72.1L158.1,71.6L158.8,70.5L160.6,69.8L160.4,70.6L161.3,70.6L162.5,72.0L163.4,71.5L164.4,74.5L165.2,73.3L164.6,72.1L165.8,71.3L166.2,72.4L168.0,72.4L167.4,74.4L169.2,73.3L168.9,74.2L169.7,75.3L169.8,73.6L171.0,74.9L172.2,72.8L172.7,74.6L174.0,75.1L175.5,73.1L176.2,73.7L175.5,73.7L175.1,75.1L176.7,74.3L176.0,75.3L177.2,75.1L178.3,76.5L179.4,74.8L179.7,76.8L180.3,77.0L181.0,75.9L180.8,76.7L182.4,76.7L182.5,78.3L184.0,77.9L183.6,78.8L184.4,80.9L184.8,79.8L185.7,79.5L186.4,80.8L187.7,79.9L188.3,80.3L186.6,82.3L188.3,82.6L188.6,84.2L189.4,84.5L189.2,83.5L190.0,84.1L191.1,83.0L191.9,84.1L194.2,84.2L194.2,85.7L195.1,86.7L193.7,89.6L194.8,89.6L194.0,90.3L194.6,90.8L193.5,92.0L193.7,93.1L192.1,93.8L193.6,96.4L193.8,98.3L193.5,99.4L192.2,99.2L191.8,100.3L192.3,102.9L191.9,104.3L192.8,104.6L193.4,106.1L192.9,107.4L193.3,108.7L192.2,108.7L192.7,109.6L193.3,109.3L192.8,110.4L193.4,109.9L193.4,111.1L194.4,111.5L193.5,111.8L194.0,112.4L193.4,113.0L194.0,113.7L193.6,114.6L194.2,115.5L195.2,115.3L195.3,116.7L197.6,119.5L196.9,122.3L197.7,122.3L197.3,123.3L197.9,124.2L202.3,123.9L204.0,126.9L207.7,126.2L208.6,127.0L210.1,126.4L210.0,125.6L211.9,125.7L212.7,127.0L211.3,129.4L212.1,130.7L212.0,131.8L212.9,131.5L213.5,133.2L212.5,135.3L211.7,135.2L211.2,138.7L214.1,140.2L214.4,141.5L215.5,141.9L215.8,143.8L216.8,143.3L216.5,144.2L217.6,145.1L218.7,143.5L219.6,143.6L219.6,142.2L220.8,142.4L220.9,141.8L221.6,143.4L222.3,142.8L222.4,143.9L223.1,143.5L222.9,144.3L226.2,143.8L227.6,145.2L226.8,146.5L227.4,146.6L227.1,147.3L229.3,147.2L231.5,148.8L231.1,149.6L234.5,151.2L234.7,153.0L235.7,152.8L236.1,153.6L238.6,154.4L238.5,155.0L240.8,154.9L240.7,155.7L243.6,155.0L243.8,155.9L243.0,156.4L243.9,158.2L245.7,158.6L245.9,159.5L245.1,160.5L246.7,161.3L246.9,160.4L248.6,160.6L249.1,159.9L249.7,161.3L251.0,162.1L250.9,162.7L254.3,164.1L255.3,167.6L256.4,169.1L257.3,169.7L258.0,169.3L258.8,172.2L260.8,172.0L261.4,173.6L262.9,173.7L263.5,174.4L263.1,175.6L265.6,177.1L266.9,180.1L269.4,178.7L269.8,179.3L269.4,180.4L271.9,180.3L271.2,181.7L273.6,181.7L273.8,183.5L274.5,183.5L274.1,183.8L274.7,184.6L275.8,184.3L275.0,186.1L275.9,186.4L274.9,187.1L276.4,187.0L275.5,188.2L276.2,188.3L275.5,188.8L276.4,189.2L276.2,190.2L276.9,190.1L276.8,190.8L277.6,191.3L278.6,190.9L277.8,191.8L278.5,192.1L278.0,193.1L279.1,194.3L278.3,195.4L279.6,195.0L279.0,196.0L279.5,195.6L279.8,196.9L281.4,198.6L282.5,199.0L283.0,198.4L282.8,199.1L283.4,199.1L283.0,199.6L284.0,199.5L284.0,200.3L284.6,200.0L284.1,200.9L284.7,200.7L285.1,201.9L285.8,200.8L285.7,202.1L286.6,201.5L286.4,202.4L287.3,202.0L286.6,203.9L286.9,204.5L289.9,205.3L290.2,206.4L290.6,205.8L291.3,207.4L292.5,207.7L292.2,208.8L292.8,209.3L293.5,208.7L294.2,209.2L294.0,208.7L294.8,208.2L294.9,209.7L294.2,211.4L294.9,212.7L295.8,211.5L295.0,211.0L295.6,211.2L295.5,210.2L296.1,209.8L297.0,210.7L297.8,210.3L297.9,212.5L298.1,212.0L298.7,212.7L298.9,211.9L300.6,211.1L300.2,214.5L301.3,214.4L301.4,213.7L302.0,214.3L302.7,213.6L303.5,213.9L302.9,216.2L303.6,216.8L304.7,215.8L305.3,217.2L307.2,216.6L307.6,218.0L309.0,216.7L310.0,217.4L310.5,216.4L309.9,215.7L310.7,216.0L310.2,215.2L311.0,215.8L312.7,215.1L312.7,213.3L313.4,213.1L313.2,212.3L313.9,212.4L314.0,211.5L314.3,212.2L314.4,210.9L319.9,211.7L321.2,213.3L323.8,212.2L324.2,210.7L322.7,209.2L322.2,206.8L321.0,206.2L321.0,205.4L319.2,203.9L319.8,201.8L321.9,201.1L321.2,198.2L323.3,193.4L322.8,191.6L324.6,190.9L324.7,190.2L326.8,190.7L329.2,188.4L330.1,188.7L332.4,187.5L332.6,188.6L334.3,187.1L335.3,188.0L335.4,187.1L336.1,188.4L336.3,187.9L337.9,188.1L337.4,189.3L339.6,189.2L340.3,188.4L342.9,189.2L343.1,188.2L344.8,188.0L346.0,188.5L345.8,190.1L346.9,189.5L348.8,191.1L351.0,190.1L353.5,191.7L356.0,190.0L357.9,189.9L358.0,188.1L360.4,188.6L361.0,187.1L362.0,187.6L362.7,185.9L364.3,186.5L365.1,185.9L366.7,186.8L367.8,185.2L368.3,185.9L368.0,187.2L368.7,186.3L369.9,186.3L369.5,187.8L370.2,187.6L370.0,188.4L372.3,189.9L371.8,191.1L372.7,191.1L373.0,192.5L373.4,192.5L373.0,191.8L375.0,191.3L375.1,191.8L374.1,192.3L375.1,192.5L374.5,193.4L375.2,193.0L376.0,194.4L377.4,195.1L378.4,197.0L379.1,196.7L378.7,197.6L379.7,198.1L380.7,197.1L381.1,197.6L380.5,197.6L380.6,198.7L382.4,198.4L382.9,199.2L382.1,200.1L383.5,200.1L383.3,200.9L384.5,201.4L387.0,201.0L386.9,202.3L388.2,202.3L388.2,203.3L389.4,203.4L389.7,204.2L390.1,203.8L389.6,203.4L391.0,203.3L390.9,202.5L391.9,203.3L392.6,203.1L392.4,202.3L393.4,202.5L392.5,201.9L393.0,201.0L396.9,200.2L397.5,200.6L396.7,201.2L396.9,201.9L398.7,201.5L398.9,202.4L400.9,201.1L400.2,201.6L400.7,202.7L400.3,203.4L401.8,204.7L401.3,205.7L402.3,205.6L402.4,206.6L405.1,205.4L405.9,205.7L407.1,204.5L408.5,205.3L408.8,204.5L409.3,206.5L410.4,206.0L410.6,206.8L411.9,207.1L411.9,205.9L413.5,205.7L413.2,206.4L414.0,206.8L415.3,205.3L415.8,205.9L415.1,206.0L415.0,206.9L416.2,206.4L416.9,207.5L418.3,206.9L419.4,209.2L420.4,207.7L420.9,208.9L421.4,207.9L421.4,208.9L422.2,208.0L423.9,207.9L423.8,207.4L424.5,207.3L424.0,206.8L425.0,206.2L426.3,207.7L426.4,206.2L427.1,206.1L426.7,206.6L427.7,207.0L427.0,207.6L427.9,208.0L427.1,209.1L427.7,208.9L428.3,209.8L428.5,208.7L429.4,209.6L429.7,208.8L430.7,209.3L430.4,208.4L431.5,207.6L433.9,210.1L435.4,208.6L434.7,207.8L434.8,206.3L436.3,205.7L436.6,203.9L438.3,202.3L438.1,201.6L439.3,201.7L439.9,202.8L440.7,201.2L441.9,202.6L441.7,203.4L444.3,204.1L444.4,203.3L443.7,203.5L444.3,202.9L444.5,200.8L445.8,201.1L446.8,203.4L448.2,204.2L448.7,203.9L448.4,203.0L449.1,202.6L450.9,203.4L451.0,202.5L453.2,202.3L453.7,202.6L452.8,203.6L453.3,204.6L456.2,205.8L456.2,206.4L456.9,206.4L456.2,206.8L456.7,207.6L458.6,207.2L458.2,207.9L459.0,209.1L459.7,208.4L459.3,208.0L460.7,208.6L460.8,207.9L462.7,207.4L462.5,209.5L464.3,209.2L464.1,211.1L465.1,210.2L465.1,211.0L467.8,211.5L467.6,210.9L468.4,210.5L469.5,211.8L469.4,212.4L470.1,212.1L470.1,213.9L471.0,213.2L472.6,213.5L473.2,212.3L473.9,212.4L474.5,213.8L476.6,213.5L476.6,216.1L477.9,215.8L478.1,214.7L479.5,216.6L480.2,216.1L480.5,212.8L481.8,213.2L482.5,214.5L484.5,213.4L484.5,213.9L485.2,214.0L485.0,215.5L485.8,215.0L486.7,216.5L487.3,215.4L488.1,215.8L488.8,211.6L491.1,209.9L491.5,210.3L491.2,209.4L491.6,209.7L492.2,208.3L491.3,207.8L491.8,207.6L491.7,206.6L492.4,206.6L491.7,206.0L492.6,206.3L492.4,205.5L493.2,205.8L492.8,205.1L493.7,204.4L494.1,206.8L495.4,208.8L497.0,208.1L500.3,210.0L503.2,208.8L506.6,208.9L509.3,211.1L511.9,208.2L511.4,206.9L512.1,206.0L512.4,204.1L514.4,202.2L515.1,202.4L514.9,199.9L516.0,199.3L519.7,201.1L520.8,199.4L521.9,199.3L522.1,199.9L523.1,199.4L524.5,201.2L525.6,201.3L524.8,202.6L525.3,203.7L527.7,205.4L530.3,203.5L528.3,202.2L527.4,202.9L527.5,201.5L530.9,202.0L531.7,202.9L534.5,201.2L535.3,199.6L537.9,199.4L540.1,197.9L541.0,199.6L542.8,200.6L545.3,200.9L544.8,201.4L545.6,201.9L547.9,201.5L548.8,203.0L553.2,204.1L554.0,205.2L555.1,205.0L555.0,204.3L556.3,204.5L556.0,205.1L556.7,206.1L556.3,207.7L557.9,208.5L557.2,208.6L557.2,209.2L558.1,209.8L560.0,209.1L560.5,209.7L561.2,208.9L561.2,209.6L561.8,209.0L562.6,210.3L563.3,209.6L562.4,211.8L562.7,213.1L561.9,212.8L561.7,213.6L563.2,214.9L562.6,216.1L563.1,216.6L562.5,217.1L563.3,217.4L563.5,219.0L566.3,219.1L566.1,220.3L565.1,220.3L566.0,221.3L565.0,222.6L566.5,225.7L565.4,227.3L566.0,228.4L565.6,229.7L566.3,230.9L565.9,231.6L566.0,233.2L566.5,233.4L566.1,234.2L566.8,234.9L566.1,236.1L568.0,237.0L567.3,237.5L567.7,238.4L567.2,240.6L566.3,241.6L566.9,241.7L566.3,244.0L567.9,245.1L568.0,246.6L569.6,247.2L570.2,250.2L573.2,251.5L572.7,253.2L573.3,253.5L572.6,254.5L574.4,257.5L573.1,260.1L573.9,261.7L575.2,260.8L576.0,263.0L576.7,262.4L578.4,262.7L578.4,263.5L579.6,263.7L580.5,264.8L579.4,266.2L580.3,266.0L580.7,267.0L580.0,270.1L576.8,276.3L573.7,278.5L574.1,278.8L573.8,280.1L572.8,280.6L573.3,280.9L571.1,283.7L571.9,285.1L572.8,285.6L573.3,284.6L575.7,284.0L577.5,284.6L577.8,285.5L578.7,284.6L720.1,355.5L719.1,356.8L716.0,357.6L714.5,359.3L707.6,359.5L704.1,360.8L703.0,361.7L703.3,362.4L701.2,363.5L698.7,369.4L696.8,371.4L696.4,373.5L691.5,375.1L690.3,376.2L689.9,377.7L687.5,377.5L684.3,378.7L683.6,379.9L682.0,380.3L681.9,381.8L681.1,382.5L679.3,381.9L676.8,382.7L669.6,382.7L665.8,383.7L664.5,385.4L663.7,384.8L663.7,383.9L662.2,383.0L652.5,382.7L636.8,383.1L633.4,384.0L627.4,383.6L622.7,384.7L621.0,386.5L620.2,385.4L618.1,385.1L613.0,385.8L598.8,385.2L586.3,386.1L577.5,388.2L559.5,394.4L546.5,400.5L534.9,408.7L521.7,420.2L489.3,452.5L474.7,468.5L475.0,467.0L478.0,464.4L475.9,466.2L474.9,466.4L474.6,465.5L471.6,465.5L471.4,466.5L472.2,466.2L474.5,466.7L474.3,467.6L469.3,469.9L467.6,469.5L467.4,468.3L467.0,469.6L465.4,470.0L466.2,470.4L464.4,470.3L463.5,471.5L461.2,469.8L461.4,471.1L459.8,472.0L460.0,472.5L456.8,472.1L457.8,471.3L456.4,469.3L455.9,470.1L456.4,470.9L455.5,471.9L451.0,472.7L451.7,473.5L450.8,474.8L450.7,472.9L450.4,474.2L450.0,472.8L450.0,473.3L449.2,472.8L448.0,473.5L449.3,473.3L449.6,474.1L449.2,474.8L448.5,473.9L448.3,475.4L447.4,474.8L447.5,473.5L445.4,474.4L443.9,473.0L443.7,474.7L441.3,475.2L439.3,474.4L439.4,475.0L437.2,476.2L437.2,477.1L435.3,477.1L434.8,473.6L432.4,472.3L430.9,473.1L431.5,474.1L427.8,474.5L425.3,473.7L424.7,474.8L423.9,474.5L424.0,473.3L422.7,473.9L422.9,474.5L421.4,474.3L422.8,475.1L420.7,476.3L421.5,477.0L420.4,476.6L419.8,477.6L420.5,478.3L421.3,477.8L420.8,478.5L421.3,478.8L420.1,478.6L419.9,477.9L419.3,479.3L421.9,482.2L423.1,485.9L426.3,485.6L425.5,487.3L426.1,491.0L427.8,492.6L427.4,494.4L427.8,495.5L430.2,495.4L432.6,491.8L435.8,490.0L437.5,490.2L438.0,485.4L439.2,484.6L439.4,482.9L441.7,483.1L442.6,484.2L441.7,492.1L443.0,493.3L442.7,494.1L443.3,494.4L443.4,496.0L442.2,496.6L440.4,499.8L439.2,503.1L440.0,505.4L438.9,506.1L439.3,507.1L442.3,507.6L441.4,507.9L442.0,508.6L441.1,508.7L442.5,509.4L442.3,510.5L443.0,511.1L442.7,511.7L440.7,510.4L438.8,511.6L438.4,513.4L439.6,514.0L439.1,515.8L438.5,515.8L438.9,516.5L438.3,516.5L438.4,518.0L437.6,517.6L435.5,518.4L435.4,517.5L434.3,518.7L432.0,517.5L431.8,516.1L430.1,513.8L430.1,512.8L431.6,512.7L431.8,511.1L432.6,510.9L429.8,510.2L430.5,509.1L429.7,508.4L428.8,508.9L428.7,507.3L427.1,507.5L427.8,506.3L426.4,504.6L424.4,504.6L425.8,504.1L426.0,502.3L423.2,496.9L419.6,492.4L415.2,488.7L411.3,486.6L407.3,486.3L405.4,487.6L404.4,489.6L405.1,492.8L403.0,494.5L399.9,494.6L398.4,496.0L397.5,494.3L397.9,492.2L394.3,482.6L390.2,476.3L386.0,471.7L383.1,469.5L381.9,469.5L379.9,470.1L378.6,472.2L377.4,472.7L375.9,472.2L373.4,472.9L369.8,470.1L367.9,466.1L363.6,460.6L358.9,458.6L354.8,458.6L354.1,457.1L358.5,456.3L359.7,454.4L359.6,453.0L358.4,452.1L359.3,451.1L359.7,448.5L358.3,445.7L361.3,446.3L363.5,445.7L364.1,446.5L366.2,446.5L368.8,442.2L369.1,440.2L368.5,439.0L366.2,438.8L366.7,434.9L364.8,432.4L364.1,428.3L361.8,427.8L360.1,426.4L357.9,427.8L352.8,426.4L352.4,428.0L351.0,429.2L348.9,429.8L347.0,429.4L347.4,428.4L346.8,427.3L345.5,427.3L345.4,428.6L346.0,429.2L343.2,432.2L343.0,435.6L341.6,435.4L341.1,434.3L340.6,434.7L341.1,436.1L340.6,437.5L342.6,439.8L342.2,441.6L342.9,442.8L342.0,442.9L340.9,441.7L339.9,442.5L342.3,443.3L343.9,446.0L335.7,444.1ZM474.3,468.8L470.3,472.9L472.7,470.3L470.9,470.4L474.3,468.8ZM458.4,475.8L454.3,477.5L452.4,477.2L452.7,476.8L452.3,476.7L451.9,477.0L452.4,477.7L451.0,476.5L453.7,474.8L453.4,475.1L455.1,474.9L454.6,475.6L455.6,475.0L458.4,475.8ZM453.8,480.8L452.0,480.9L447.9,484.1L443.9,482.5L441.5,478.9L442.0,477.8L443.9,477.9L445.0,476.9L444.5,477.7L445.5,478.1L444.9,478.7L447.6,477.8L444.9,480.3L446.2,480.3L444.3,481.3L448.1,480.7L447.6,480.6L450.4,478.5L451.6,479.2L451.0,479.8L452.4,479.4L452.3,480.2L453.8,480.8ZM365.2,440.4L363.1,441.6L357.5,442.3L356.2,443.5L355.9,445.7L354.1,445.6L353.2,447.0L348.1,444.6L347.1,444.5L347.6,445.4L346.9,446.0L346.3,445.3L347.2,444.2L347.0,440.7L348.1,436.0L348.9,435.9L348.0,435.5L348.2,433.5L348.8,433.2L351.5,434.2L353.2,436.1L361.2,435.7L365.2,440.4ZM354.2,460.3L353.9,461.6L353.1,461.7L352.4,460.9L352.6,459.9L350.4,457.4L346.8,455.5L344.3,455.7L342.8,458.0L341.4,456.7L338.8,456.0L334.5,456.8L335.4,455.6L336.9,455.3L338.4,451.5L341.1,450.1L348.3,450.0L349.3,450.4L347.1,450.4L347.0,451.0L349.9,451.1L348.3,453.0L348.5,453.9L349.5,453.5L348.9,455.6L353.8,455.9L354.1,456.6L352.8,457.1L352.3,458.6L354.2,460.3Z"/>
+        <g id="labels"></g>
+        <g id="exts"></g>
+        <g id="pins"></g>
+      </svg>
+      <div class="ctrls">
+        <button id="zin" aria-label="Zoom in">+</button>
+        <button id="zout" aria-label="Zoom out">−</button>
+        <button id="zmel" class="txt" aria-label="Zoom to Melbourne">MEL</button>
+        <button id="zall" class="txt" aria-label="Show all of Victoria">VIC</button>
+      </div>
+      <div class="pop" id="pop" hidden></div>
+    </div>
+  </div>
+  <p class="mapnote">Pins sit at listed street addresses. Maroondah and Port Phillip list no public site yet, so their pins mark the municipality. <span class="dash"></span>Dashed rings are temporary bushfire extensions.</p>
+</section>
 
-  <main class="wrap" id="main"></main>
+<section id="compare">
+  <div class="sec-head">
+    <div><div class="eyebrow">Side by side</div><h2>Compare</h2></div>
+    <p class="lede" style="max-width:46ch">Sort any column. Click a row to open that Local.</p>
+  </div>
+  <div class="bars">
+    <div class="panel"><h3>Locals by lead provider</h3><div id="byLead"></div></div>
+    <div class="panel"><h3>Partners per Local</h3><div id="byPartners"></div></div>
+  </div>
+  <div class="tablewrap">
+    <table id="tbl">
+      <thead><tr>
+        <th data-k="name" aria-sort="ascending"><button>Local</button></th>
+        <th data-k="region"><button>Region</button></th>
+        <th data-k="began"><button>Opened</button></th>
+        <th data-k="months"><button>Months</button></th>
+        <th data-k="lead"><button>Lead provider</button></th>
+        <th data-k="np"><button>Partners</button></th>
+        <th data-k="ns"><button>Sites</button></th>
+        <th data-k="nl"><button>LGAs</button></th>
+        <th data-k="walk"><button>Walk-in</button></th>
+        <th data-k="ph"><button>Public hospital partner</button></th>
+        <th data-k="ab"><button>Aboriginal org partner</button></th>
+        <th data-k="lg"><button>LGBTIQA+ partner</button></th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
 
-  <dialog id="detail" aria-labelledby="detail-title">
-    <div class="dlg" id="detail-body"></div>
-  </dialog>
+<section id="timeline">
+  <div class="sec-head">
+    <div><div class="eyebrow">2021 → 2026</div><h2>How the network grew</h2></div>
+    <p class="lede" style="max-width:46ch">Locals operating, against the promise of 50 by the end of 2026.</p>
+  </div>
+  <div class="chartbox"><svg id="chart" viewBox="0 0 900 300" role="img" aria-label="Step chart of Locals operating from 2021 to 2026 against a target of 50"></svg></div>
+  <ul class="ms" id="ms"></ul>
+</section>
 
-  <footer class="wrap foot">
-    <p>Not affiliated with Levi Strauss &amp; Co. Levi's, 501, Red Tab and related marks belong to their owner. Photos are linked, not copied; fit drawings are original illustrations. Dates marked <span class="approx-badge">c.</span> are approximate or not yet confirmed by a source.</p>
-  </footer>
+<section id="team">
+  <div class="sec-head"><div><div class="eyebrow">Inside a Local</div><h2>Who's on the team</h2></div></div>
+  <div class="team">
+    <div class="panel"><h3>Lived experience</h3><div class="pills"><span class="tag">Consumer peer workers</span><span class="tag">Family/carer peer workers</span><span class="tag">AOD peer workers</span><span class="tag">Peer advocates</span><span class="tag">Consumer &amp; carer consultants</span></div><p>Peer workers greet people, help them navigate and stay alongside them through care.</p></div>
+    <div class="panel"><h3>Clinical</h3><div class="pills"><span class="tag">Mental health nurses</span><span class="tag">Psychologists</span><span class="tag">Social workers</span><span class="tag">Occupational therapists</span><span class="tag">AOD clinicians</span><span class="tag">Psychiatrists &amp; registrars</span></div><p>Assessment, therapy, prescribing and medication review.</p></div>
+    <div class="panel"><h3>Wellbeing</h3><div class="pills"><span class="tag">Mental health support workers</span><span class="tag">Care coordinators</span><span class="tag">Navigators</span></div><p>Goal-based support, groups, housing and money stressors, links to NDIS and community.</p></div>
+  </div>
+  <p class="mapnote">Staffing mix and capacity per Local are not published, so they are left out.</p>
+</section>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+<footer>
+  <div class="eyebrow">Sources</div>
+  <ol>
+    <li><a href="https://www.health.vic.gov.au/mental-health-services/mental-health-and-wellbeing-locals" target="_blank" rel="noopener">Dept of Health: Locals, providers and bushfire support (updated 26 Aug 2026)</a></li>
+    <li><a href="https://www.betterhealth.vic.gov.au/mental-health-wellbeing-locals" target="_blank" rel="noopener">Better Health Channel: addresses and phone numbers</a></li>
+    <li><a href="https://www.health.vic.gov.au/publications/mental-health-wellbeing-locals-service-framework" target="_blank" rel="noopener">Locals Service Framework v2.0 (Jan 2026)</a></li>
+    <li><a href="https://www.premier.vic.gov.au/seven-new-mental-health-and-wellbeing-locals-now-open" target="_blank" rel="noopener">Premier: Seven new Locals now open (26 Nov 2025)</a></li>
+    <li><a href="https://www.premier.vic.gov.au/mental-health-local-opens-its-doors-east-gippsland" target="_blank" rel="noopener">Premier: East Gippsland Local opens (24 Oct 2025)</a></li>
+    <li><a href="https://www.premier.vic.gov.au/shepparton-welcomes-new-mental-health-local-site" target="_blank" rel="noopener">Premier: Shepparton permanent site (27 Jun 2025)</a></li>
+    <li><a href="https://www.premier.vic.gov.au/site-4/more-local-mental-healthcare-across-victoria" target="_blank" rel="noopener">Premier: More local mental healthcare (29 May 2023)</a></li>
+    <li><a href="https://www.premier.vic.gov.au/site-4/walk-brimbank-mental-health-and-wellbeing-local" target="_blank" rel="noopener">Premier: Walk-ins at Brimbank (27 Mar 2023)</a></li>
+    <li><a href="https://fac.dffh.vic.gov.au/node/4503" target="_blank" rel="noopener">First Locals open (22 Dec 2022)</a></li>
+    <li><a href="https://mindaustralia.org.au/mental-health-and-wellbeing-locals-open-bendigo-echuca-dandenong-and-melton" target="_blank" rel="noopener">Mind Australia: Bendigo, Echuca, Dandenong, Melton (15 Dec 2023)</a></li>
+    <li><a href="https://www.wellways.org/news/wellways-opens-new-mental-health-and-wellbeing-locals-in-victoria/" target="_blank" rel="noopener">Wellways: new Locals opened (Oct 2025)</a></li>
+    <li><a href="https://www.thecourier.com.au/story/9367406/ballarat-mental-health-local-missing-despite-cries-for-help/" target="_blank" rel="noopener">The Courier: Ballarat still without a Local (Oct 2026)</a></li>
+  </ol>
+  <p>The government counts "22 Locals across 24 locations", treating some multi-site services separately; this atlas follows the Department's list of 20 services. Tile pictures are illustrations, not photos.</p>
+</footer>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlgTitle"><div class="dlg" id="dlgBody"></div></dialog>
+
+<script>
+const NOW = new Date(2026, 9, 15);
+const W = {1:{lbl:"Dec 2022",d:"2022-12",c:"var(--w1)"},2:{lbl:"Dec 2023",d:"2023-12",c:"var(--w2)"},3:{lbl:"Nov 2025",d:"2025-11",c:"var(--w3)"}};
+// partner flags: h = public health service/hospital, a = Aboriginal organisation, l = LGBTIQA+ organisation
+const L = [
+ {id:"egip",name:"East Gippsland",serves:["East Gippsland"],region:"regional",wave:2,land:"coast",lead:"Wellways",
+  partners:[["Gippsland Lakes Complete Health"],["Latrobe Regional Health","h"]],phone:"1300 000 352",walk:true,
+  sites:[{t:"Bairnsdale",a:"24 Service Street, Bairnsdale VIC 3875",ll:[-37.8236,147.6297]}],
+  notes:["Permanent Bairnsdale site officially opened 24 Oct 2025.","Orbost site coming.","Weekdays 9am–5pm; public holidays 10am–2pm."]},
+ {id:"bwm",name:"Benalla, Wangaratta & Mansfield",serves:["Benalla","Wangaratta","Mansfield"],region:"regional",wave:1,land:"ranges",lead:"Wellways",
+  partners:[["Albury Wodonga Health","h"],["Australian Community Support Organisation (ACSO)"]],phone:"1800 000 842",walk:true,
+  sites:[{t:"Benalla",a:"90-94 Nunn Street, Benalla VIC 3672",ll:[-36.5513,145.9840]},{t:"Wangaratta",a:"76a Reid Street, Wangaratta VIC 3677",ll:[-36.3566,146.3229]},{t:"Mansfield",a:"31 Highett Street, Mansfield VIC 3722",ll:[-37.0527,146.0866]}],
+  fire:"Towong Shire", spt:true,
+  notes:["Mansfield walk-ins Mon–Wed.","Wellways reports about 60 staff across its Wangaratta and Shepparton centres."]},
+ {id:"bend",name:"Bendigo & Echuca",serves:["Greater Bendigo","Loddon","Campaspe"],region:"regional",wave:2,land:"river",lead:"Mind Australia",
+  partners:[["Bendigo & District Aboriginal Co-operative","a"],["Bendigo Health","h"],["Echuca Regional Health","h"],["The Salvation Army"],["Thorne Harbour Health","l"]],phone:"1800 332 501",walk:true,
+  sites:[{t:"Bendigo",a:"3/15 Hopetoun Street, Bendigo VIC 3550",ll:[-36.7530,144.2765]},{t:"Echuca",a:"222 Ogilvie Avenue, Echuca VIC 3564",ll:[-36.1388,144.7437]}],
+  notes:["Began by phone and telehealth in Dec 2023; permanent sites followed in 2024."]},
+ {id:"brim",name:"Brimbank",serves:["Brimbank"],region:"metro",wave:1,land:"plains",lead:"cohealth",
+  partners:[["Caraniche"],["Carers Victoria"]],phone:"03 9448 5522",walk:false,
+  sites:[{t:"Sunshine",a:"45 Dickson Street, Sunshine VIC 3020",ll:[-37.7880,144.8318]}],spt:true,
+  notes:["First Local to announce walk-in access (Mar 2023)."]},
+ {id:"card",name:"Cardinia",serves:["Cardinia"],region:"metro",wave:3,land:"ranges",lead:"Mind Australia",
+  partners:[["Monash Health","h"]],phone:"03 5929 2600",walk:false,
+  sites:[{t:"Pakenham",a:"16 Station Street, Pakenham VIC 3810",ll:[-38.0766,145.4838]},{t:"Cockatoo",a:"7-17 McBride Street, Cockatoo VIC 3781",ll:[-37.9367,145.4930]}],
+  notes:["Cockatoo site open Mon and Wed, at the Eastern Dandenong Ranges Association."]},
+ {id:"dand",name:"Dandenong",serves:["Greater Dandenong"],region:"metro",wave:2,land:"plains",lead:"Mind Australia",
+  partners:[["Monash Health","h"],["Victorian Foundation for Survivors of Torture"],["Thorne Harbour Health","l"]],phone:"03 8908 1800",walk:true,
+  sites:[{t:"Dandenong",a:"29b Langhorne Street, Dandenong VIC 3175",ll:[-37.9877,145.2149]}],
+  notes:["Includes a partner specialising in refugee trauma."]},
+ {id:"dare",name:"Darebin",serves:["Darebin"],region:"metro",wave:3,land:"river",lead:"Neami National",
+  partners:[["Northern Health","h"]],phone:"1800 979 545",walk:false,
+  sites:[{t:"Northcote",a:"413 High Street, Northcote VIC 3070",ll:[-37.7698,144.9998]},{t:"Northcote (Your Community Health)",a:"42 Separation Street, Northcote VIC 3070",ll:[-37.7742,144.9933]}],notes:[]},
+ {id:"fran",name:"Frankston",serves:["Frankston"],region:"metro",wave:1,land:"coast",lead:"Wellways",
+  partners:[["Peninsula Health","h"],["Mentis Assist"]],phone:"1800 000 525",walk:true,
+  sites:[{t:"Frankston",a:"Ground Floor, 454 Nepean Highway, Frankston VIC 3199",ll:[-38.1406,145.1240]}],spt:true,notes:[]},
+ {id:"geel",name:"Greater Geelong & Queenscliffe",serves:["Greater Geelong","Queenscliffe"],region:"regional",wave:1,land:"coast",lead:"Barwon Health",
+  partners:[["Wellways"],["ermha365"],["Wathaurong Aboriginal Co-operative","a"]],phone:"1800 573 151",walk:true,leadH:true,
+  sites:[{t:"Geelong",a:"181 Moorabool Street, Geelong VIC 3220",ll:[-38.1533,144.3588]}],fire:"Colac Otway Shire",spt:true,
+  notes:["The only Local led by a public health service."]},
+ {id:"latr",name:"Latrobe",serves:["Latrobe"],region:"regional",wave:1,land:"plains",lead:"Neami National",
+  partners:[["Drummond Street Services"],["Uniting Vic Tas"]],phone:"1800 571 142",walk:true,
+  sites:[{t:"Morwell",a:"23 Hazelwood Road, Morwell VIC 3840",ll:[-38.2398,146.3956]}],spt:true,notes:[]},
+ {id:"lily",name:"Lilydale (Yarra Ranges)",serves:["Yarra Ranges"],region:"metro",wave:2,land:"ranges",lead:"Wellways",
+  partners:[["Eastern Health","h"],["Access Health and Community"],["Oonah Aboriginal Health and Community Services","a"]],phone:"1300 000 252",walk:true,
+  sites:[{t:"Lilydale",a:"Lower Ground, 61-65 Anderson Street, Lilydale VIC 3140",ll:[-37.7558,145.3530]}],notes:[]},
+ {id:"mari",name:"Maribyrnong",serves:["Maribyrnong"],region:"metro",wave:3,land:"river",lead:"cohealth",
+  partners:[["Western Health","h"]],phone:"03 9448 5522",walk:false,
+  sites:[{t:"West Footscray",a:"575A Barkly Street, West Footscray VIC 3012",ll:[-37.8003,144.8777]}],notes:[]},
+ {id:"maro",name:"Maroondah",serves:["Maroondah"],region:"metro",wave:3,land:"ranges",lead:"Wellways",
+  partners:[["Eastern Health","h"],["Access Health and Community"],["Oonah Aboriginal Health and Community Services","a"]],phone:"1300 000 353",walk:false,
+  sites:[{t:"Maroondah (no site listed)",a:"Ringwood VIC 3134",ll:[-37.8150,145.2290],nosite:true}],
+  notes:["No public street address listed yet. Call for support."]},
+ {id:"melt",name:"Melton",serves:["Melton"],region:"metro",wave:2,land:"plains",lead:"Mind Australia",
+  partners:[["IPC Health"],["Mid West Area Mental Health Service","h"],["Thorne Harbour Health","l"],["Western Health","h"]],phone:"03 8732 3200",walk:true,
+  sites:[{t:"Cobblebank",a:"5 Hollingsworth Drive, Cobblebank VIC 3338",ll:[-37.7127,144.5868]}],notes:[]},
+ {id:"mild",name:"Mildura",serves:["Mildura"],region:"regional",wave:2,land:"river",lead:"Wellways",
+  partners:[["Mallee District Aboriginal Services","a"],["Mildura Base Public Hospital","h"],["Sunraysia Community Health Services"]],phone:"1300 000 667",walk:true,
+  sites:[{t:"Mildura",a:"2/124 Deakin Avenue, Mildura VIC 3500",ll:[-34.1886,142.1585]}],
+  notes:["The most remote Local, around 540 km from Melbourne."]},
+ {id:"mtal",name:"Mount Alexander",serves:["Mount Alexander","Central Goldfields","Macedon Ranges"],region:"regional",wave:3,land:"ranges",lead:"Mind Australia",
+  partners:[["Bendigo Health","h"],["Thorne Harbour Health","l"]],phone:"03 4442 9100",walk:false,
+  sites:[{t:"Castlemaine (Dhelkaya Health)",a:"141 Cornish Street, Castlemaine VIC 3450",ll:[-37.0636,144.2170]},{t:"Kyneton",a:"47-49 High Street, Kyneton VIC 3444",ll:[-37.2470,144.4527]}],
+  notes:["Started by phone and telehealth in Nov 2025, scaling to in-person."]},
+ {id:"ppil",name:"Port Phillip",serves:["Port Phillip"],region:"metro",wave:3,land:"coast",lead:"Wellways",
+  partners:[["Alfred Health","h"]],phone:"1300 000 511",walk:false,
+  sites:[{t:"Port Phillip (no site listed)",a:"St Kilda VIC 3182",ll:[-37.8640,144.9810],nosite:true}],
+  notes:["No public street address listed yet. Call for support."]},
+ {id:"shep",name:"Shepparton",serves:["Greater Shepparton","Strathbogie","Moira"],region:"regional",wave:2,land:"river",lead:"Wellways",
+  partners:[["APMHA Healthcare"],["Goulburn Valley Health","h"]],phone:"1300 000 559",walk:true,
+  sites:[{t:"Shepparton",a:"116 Corio Street, Shepparton VIC 3630",ll:[-36.3792,145.4012]}],fire:"Mitchell & Murrindindi Shires",
+  notes:["Operating since Dec 2023; permanent home officially opened 27 Jun 2025.","Weekdays 9am–5pm; public holidays 10am–2pm."]},
+ {id:"whit",name:"Whittlesea",serves:["Whittlesea"],region:"metro",wave:1,land:"plains",lead:"Neami National",
+  partners:[["Drummond Street Services"],["Uniting Vic Tas"]],phone:"1800 571 145",walk:true,
+  sites:[{t:"South Morang",a:"7/1 Danaher Drive, South Morang VIC 3752",ll:[-37.6493,145.0918]}],spt:true,notes:[]},
+ {id:"wynd",name:"Wyndham",serves:["Wyndham"],region:"metro",wave:3,land:"coast",lead:"cohealth",
+  partners:[["Mercy Health","h"]],phone:"03 9448 5522",walk:false,
+  sites:[{t:"Werribee",a:"Suite 6, 1-13 Watton Street, Werribee VIC 3030",ll:[-37.9007,144.6612]}],notes:[]}
+];
+const EXT = [
+ {area:"Colac Otway Shire",via:"geel",ll:[-38.3404,143.5849],t:"Colac"},
+ {area:"Towong Shire",via:"bwm",ll:[-36.1960,147.9020],t:"Corryong"},
+ {area:"Mitchell Shire",via:"shep",ll:[-37.0270,145.1390],t:"Seymour"},
+ {area:"Murrindindi Shire",via:"shep",ll:[-37.1910,145.7110],t:"Alexandra"}
+];
+const TOWNS = [["Melbourne",-37.8136,144.9631],["Ballarat",-37.5622,143.8503],["Warrnambool",-38.3830,142.4870],["Horsham",-36.7177,142.1993],["Swan Hill",-35.3378,143.5544],["Wodonga",-36.1218,146.8880],["Sale",-38.1010,147.0680],["Hamilton",-37.7440,142.0220]];
+
+const C = Math.cos(37.5*Math.PI/180);
+const P = (lat,lon)=>[(lon-140.9)*C*100, (-33.95-lat)*-100*-1];
+const byId = Object.fromEntries(L.map(l=>[l.id,l]));
+L.forEach(l=>{
+  const [y,m]=W[l.wave].d.split("-").map(Number);
+  l.began=W[l.wave].d; l.months=(NOW.getFullYear()-y)*12+(NOW.getMonth()+1-m);
+  l.np=l.partners.length; l.ns=l.sites.filter(s=>!s.nosite).length; l.nl=l.serves.length;
+  l.ph=!!(l.leadH||l.partners.some(p=>p[1]==="h")); l.ab=l.partners.some(p=>p[1]==="a"); l.lg=l.partners.some(p=>p[1]==="l");
+});
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const gmaps=a=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(a);
+
+/* ---------- illustrations ---------- */
+function rnd(seed){let s=0;for(const ch of seed)s=(s*31+ch.charCodeAt(0))>>>0;return()=>((s=(s*1664525+1013904223)>>>0)/4294967296);}
+function ridge(r,base,amp,freq){let d=`M0,180 L0,${base}`;const ph=r()*6;for(let x=0;x<=320;x+=8){const y=base-amp*(Math.sin(x/320*Math.PI*freq+ph)*.6+Math.sin(x/320*Math.PI*freq*2.3+ph*2)*.4);d+=` L${x},${y.toFixed(1)}`;}return d+" L320,180 Z";}
+function art(l){
+  const r=rnd(l.id), c=W[l.wave].c, uid=l.id+Math.floor(r()*1e6);
+  const sx=40+r()*240, sy=40+r()*30;
+  let g=`<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="g${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky-a)"/><stop offset="1" stop-color="var(--sky-b)"/></linearGradient></defs>`;
+  g+=`<rect width="320" height="180" fill="url(#g${uid})"/><circle cx="${sx}" cy="${sy}" r="${16+r()*10}" fill="${c}" opacity=".35"/>`;
+  if(l.land==="ranges"){
+    g+=`<path d="${ridge(r,95,38,2.2)}" fill="${c}" opacity=".28"/><path d="${ridge(r,120,30,3)}" fill="${c}" opacity=".5"/><path d="${ridge(r,148,14,4)}" fill="var(--ink)" opacity=".75"/>`;
+    for(let i=0;i<14;i++){const x=r()*320,y=140+r()*14,h=10+r()*14;g+=`<path d="M${x},${y} l${-h*.3},${h} h${h*.6} z" fill="var(--ink)" opacity=".8"/>`;}
+  }else if(l.land==="coast"){
+    g+=`<path d="${ridge(r,112,16,1.6)}" fill="${c}" opacity=".35"/><rect y="124" width="320" height="56" fill="${c}" opacity=".55"/>`;
+    for(let i=0;i<5;i++){const y=134+i*9;g+=`<path d="M0,${y} q20,-5 40,0 t40,0 t40,0 t40,0 t40,0 t40,0 t40,0 t40,0" fill="none" stroke="var(--surface)" stroke-width="1.4" opacity="${.6-i*.08}"/>`;}
+    g+=`<path d="M${200+r()*60},124 l14,-34 l14,34 z" fill="var(--ink)" opacity=".7"/>`;
+  }else if(l.land==="river"){
+    g+=`<path d="${ridge(r,110,12,1.4)}" fill="${c}" opacity=".3"/><rect y="118" width="320" height="62" fill="var(--ink)" opacity=".72"/>`;
+    g+=`<path d="M-10,180 C80,150 ${120+r()*40},135 ${200+r()*30},128 S300,122 330,120 L330,132 C280,136 ${230},142 ${170},152 S60,172 30,190 Z" fill="${c}" opacity=".85"/>`;
+    for(let i=0;i<9;i++){const x=r()*320,y=112+r()*8;g+=`<circle cx="${x}" cy="${y}" r="${7+r()*7}" fill="var(--ink)" opacity=".85"/>`;}
+  }else{
+    g+=`<path d="${ridge(r,120,10,1.2)}" fill="${c}" opacity=".3"/><rect y="132" width="320" height="48" fill="var(--ink)" opacity=".75"/>`;
+    let x=6;while(x<316){const w=12+r()*22,h=14+r()*40;g+=`<rect x="${x}" y="${132-h}" width="${w}" height="${h}" fill="${c}" opacity="${.45+r()*.4}"/>`;x+=w+2+r()*6;}
+    for(let i=0;i<3;i++)g+=`<rect x="0" y="${146+i*10}" width="320" height="1.5" fill="var(--surface)" opacity=".25"/>`;
+  }
+  return g+"</svg>";
+}
+
+/* ---------- facts ---------- */
+const lgas=L.reduce((n,l)=>n+l.nl,0), sites=L.reduce((n,l)=>n+l.ns,0);
+document.getElementById("facts").innerHTML=[
+ ["20","Locals running across Victoria"],
+ [sites,"public sites with a street address"],
+ [`${lgas}<small style="font-size:1rem;color:var(--muted)"> / 79</small>`,"council areas covered (4 more via bushfire extensions)"],
+ ["29,000+","Victorians supported (Nov 2025, latest published)"],
+ ["50","Locals promised by the end of 2026"],
+ ["26+","age group served, free, no referral"]
+].map(([b,s])=>`<div class="fact"><b class="num">${b}</b><span>${s}</span></div>`).join("");
+
+/* ---------- tiles ---------- */
+const tilesEl=document.getElementById("tiles");
+function tagsFor(l){
+  return `<span class="tag">${esc(l.lead)}</span>${l.walk?'<span class="tag">Walk-ins</span>':""}${l.ns>1?`<span class="tag">${l.ns} sites</span>`:""}${l.fire?'<span class="tag fire">Bushfire extension</span>':""}`;
+}
+function renderTiles(f="all"){
+  const list=L.filter(l=>f==="all"||l.region===f||String(l.wave)===f).sort((a,b)=>a.name.localeCompare(b.name));
+  tilesEl.innerHTML=list.map(l=>`<button class="tile" data-id="${l.id}" aria-label="Open ${esc(l.name)}">
+    <div class="art">${art(l)}<span class="wave"><i style="background:${W[l.wave].c}"></i>${W[l.wave].lbl}</span></div>
+    <div class="body"><h3>${esc(l.name)}</h3><div class="serves">${esc(l.serves.join(" · "))}</div><div class="meta">${tagsFor(l)}</div></div></button>`).join("");
+}
+renderTiles();
+document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));renderTiles(b.dataset.f);}));
+tilesEl.addEventListener("click",e=>{const t=e.target.closest(".tile");if(t)openDlg(t.dataset.id);});
+
+/* ---------- dialog ---------- */
+const dlg=document.getElementById("dlg"), dlgBody=document.getElementById("dlgBody");
+function openDlg(id){
+  const l=byId[id];
+  const yrs=l.months>=12?`${Math.floor(l.months/12)} yr ${l.months%12} mo`:`${l.months} months`;
+  dlgBody.innerHTML=`<div class="art">${art(l)}</div><button class="close" aria-label="Close">✕</button>
+  <div class="in">
+    <div><div class="eyebrow" style="color:${W[l.wave].c}">Opened ${W[l.wave].lbl} · running ${yrs}</div><h3 id="dlgTitle">${esc(l.name)}</h3></div>
+    <dl>
+      <dt>Serves</dt><dd>${esc(l.serves.join(", "))}${l.fire?` <span class="tag fire">+ ${esc(l.fire)} (bushfire extension to Jun 2027)</span>`:""}</dd>
+      <dt>Lead</dt><dd>${esc(l.lead)}</dd>
+      <dt>Partners</dt><dd><div class="pills">${l.partners.map(p=>`<span class="tag">${esc(p[0])}</span>`).join("")}</div></dd>
+      <dt>Phone</dt><dd><span class="phone">${esc(l.phone)}</span> <button class="btn ghost" data-copy="${esc(l.phone)}" style="padding:3px 9px;margin-left:6px">Copy</button></dd>
+      <dt>Walk-ins</dt><dd>${l.walk?"Yes":"Not listed — call or book"}</dd>
+      ${l.spt?`<dt>Trials</dt><dd>Local Connections social prescribing trial</dd>`:""}
+    </dl>
+    <div class="sites">${l.sites.map(s=>`<div class="site"><span><b>${esc(s.t)}</b><br><small style="color:var(--muted)">${s.nosite?"No public site listed":esc(s.a)}</small></span>${s.nosite?"":`<a class="btn ghost" href="${gmaps(s.a)}" target="_blank" rel="noopener">Google Maps ↗</a>`}</div>`).join("")}</div>
+    ${l.notes.length?`<ul class="notes">${l.notes.map(n=>`<li>${esc(n)}</li>`).join("")}</ul>`:""}
+    <div class="row" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-map="${l.id}">Show on map</button></div>
+  </div>`;
+  dlg.showModal();
+}
+dlg.addEventListener("click",e=>{
+  if(e.target===dlg||e.target.closest(".close")){dlg.close();return;}
+  const c=e.target.closest("[data-copy]");
+  if(c){const t=c.dataset.copy;try{navigator.clipboard.writeText(t).then(()=>{c.textContent="Copied"},()=>{c.textContent="Select number"});}catch(_){c.textContent="Select number"}}
+  const m=e.target.closest("[data-map]");
+  if(m){dlg.close();document.getElementById("map").scrollIntoView({behavior:"smooth"});setTimeout(()=>focusLocal(m.dataset.map,0),350);}
+});
+
+/* ---------- map ---------- */
+const svg=document.getElementById("svg"), pinsG=document.getElementById("pins"), extG=document.getElementById("exts"), lblG=document.getElementById("labels");
+const FULL={x:-10,y:-10,w:740,h:540};
+let vb={...FULL}, selected=null;
+const pins=[];
+L.forEach(l=>l.sites.forEach((s,i)=>{const [x,y]=P(s.ll[0],s.ll[1]);pins.push({l,s,i,x,y});}));
+pinsG.innerHTML=pins.map((p,k)=>`<g class="pin" data-k="${k}" tabindex="0" role="button" aria-label="${esc(p.l.name)}, ${esc(p.s.t)}"><circle class="halo" stroke="${W[p.l.wave].c}"/><circle class="dot" fill="${W[p.l.wave].c}"/></g>`).join("");
+extG.innerHTML=EXT.map((e,k)=>{const [x,y]=P(e.ll[0],e.ll[1]);return `<circle class="ext" data-e="${k}" cx="${x}" cy="${y}" tabindex="0" role="button" aria-label="Bushfire extension ${esc(e.area)}"/>`}).join("");
+lblG.innerHTML=TOWNS.map(t=>{const [x,y]=P(t[1],t[2]);return `<text class="town-lbl" data-x="${x}" data-y="${y}">${t[0]}</text>`}).join("");
+function draw(){
+  svg.setAttribute("viewBox",`${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+  const k=vb.w/FULL.w;
+  pinsG.querySelectorAll(".pin").forEach(g=>{const p=pins[g.dataset.k];
+    g.querySelector(".dot").setAttribute("cx",p.x);g.querySelector(".dot").setAttribute("cy",p.y);g.querySelector(".dot").setAttribute("r",7*k);
+    const h=g.querySelector(".halo");h.setAttribute("cx",p.x);h.setAttribute("cy",p.y);h.setAttribute("r",12*k);});
+  extG.querySelectorAll(".ext").forEach(c=>c.setAttribute("r",13*k));
+  lblG.querySelectorAll("text").forEach(t=>{t.setAttribute("x",+t.dataset.x+6*k);t.setAttribute("y",+t.dataset.y+4*k);t.setAttribute("font-size",11*k);});
+  placePop();
+}
+function animateTo(t,ms=550){
+  const s={...vb},t0=performance.now(),red=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(red){vb={...t};draw();return;}
+  (function step(n){const u=Math.min(1,(n-t0)/ms),e=u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;
+    vb={x:s.x+(t.x-s.x)*e,y:s.y+(t.y-s.y)*e,w:s.w+(t.w-s.w)*e,h:s.h+(t.h-s.h)*e};draw();if(u<1)requestAnimationFrame(step);})(t0);
+}
+function zoomAt(cx,cy,f){const w=Math.max(40,Math.min(FULL.w*1.2,vb.w*f)),h=w*FULL.h/FULL.w;animateTo({x:cx-w/2,y:cy-h/2,w,h},350);}
+document.getElementById("zin").onclick=()=>zoomAt(vb.x+vb.w/2,vb.y+vb.h/2,.6);
+document.getElementById("zout").onclick=()=>zoomAt(vb.x+vb.w/2,vb.y+vb.h/2,1.6);
+document.getElementById("zall").onclick=()=>{closePop();animateTo({...FULL});};
+document.getElementById("zmel").onclick=()=>{const [x,y]=P(-37.87,145.0);zoomAt(x,y,(150/vb.w));};
+// drag pan
+let drag=null;
+svg.addEventListener("pointerdown",e=>{if(e.target.closest(".pin,.ext"))return;drag={x:e.clientX,y:e.clientY,vb:{...vb}};svg.setPointerCapture(e.pointerId);svg.classList.add("drag");});
+svg.addEventListener("pointermove",e=>{if(!drag)return;const r=svg.getBoundingClientRect(),s=Math.max(vb.w/r.width,vb.h/r.height);
+  vb={...vb,x:drag.vb.x-(e.clientX-drag.x)*s,y:drag.vb.y-(e.clientY-drag.y)*s};draw();});
+const endDrag=()=>{drag=null;svg.classList.remove("drag");};
+svg.addEventListener("pointerup",endDrag);svg.addEventListener("pointercancel",endDrag);
+svg.addEventListener("dblclick",e=>{const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const q=pt.matrixTransform(svg.getScreenCTM().inverse());zoomAt(q.x,q.y,.5);});
+
+const pop=document.getElementById("pop"), stage=document.getElementById("stage");
+let popAnchor=null;
+function placePop(){
+  if(pop.hidden||!popAnchor)return;
+  const pt=svg.createSVGPoint();pt.x=popAnchor[0];pt.y=popAnchor[1];
+  const s=pt.matrixTransform(svg.getScreenCTM()),r=stage.getBoundingClientRect();
+  let x=s.x-r.left, y=s.y-r.top; const pw=pop.offsetWidth, ph=pop.offsetHeight;
+  let left=x-pw/2, top=y-ph-18; if(top<10) top=y+18;
+  left=Math.max(10,Math.min(r.width-pw-10,left)); top=Math.max(10,Math.min(r.height-ph-10,top));
+  pop.style.left=left+"px"; pop.style.top=top+"px";
+}
+function closePop(){pop.hidden=true;popAnchor=null;selected=null;markSel();}
+function markSel(){
+  pinsG.querySelectorAll(".pin").forEach(g=>g.classList.toggle("on",selected!==null&&pins[g.dataset.k].l.id===selected));
+  document.querySelectorAll("#list button").forEach(b=>b.setAttribute("aria-current",b.dataset.id===selected));
+}
+function showPin(k){
+  const p=pins[k], l=p.l; selected=l.id; markSel();
+  pinsG.appendChild(pinsG.querySelector(`[data-k="${k}"]`));
+  pop.innerHTML=`<button class="x" aria-label="Close">✕</button><div class="art">${art(l)}</div><div class="in">
+    <div class="eyebrow" style="color:${W[l.wave].c}">Opened ${W[l.wave].lbl}</div>
+    <h3>${esc(l.name)}</h3><p><b>${esc(p.s.t)}</b><br>${p.s.nosite?"No public site listed — call "+esc(l.phone):esc(p.s.a)}</p>
+    <p>${esc(l.lead)} + ${l.np} partner${l.np>1?"s":""} · <span class="phone">${esc(l.phone)}</span></p>
+    <div class="row">${p.s.nosite?"":`<a class="btn" href="${gmaps(p.s.a)}" target="_blank" rel="noopener">Directions ↗</a>`}<button class="btn ghost" data-more="${l.id}">Details</button></div></div>`;
+  pop.hidden=false; popAnchor=[p.x,p.y]; placePop();
+}
+function showExt(k){
+  const e=EXT[k], l=byId[e.via]; selected=null; markSel();
+  pop.innerHTML=`<button class="x" aria-label="Close">✕</button><div class="in"><div class="eyebrow" style="color:var(--fire)">Bushfire extension · to 30 Jun 2027</div>
+    <h3>${esc(e.area)}</h3><p>Served temporarily by the ${esc(l.name)} Local after the January 2026 fires. Telehealth now, face-to-face at least three days a week, Mon–Fri 9–5.</p>
+    <div class="row"><button class="btn ghost" data-more="${l.id}">${esc(l.name)} details</button></div></div>`;
+  pop.hidden=false; popAnchor=P(e.ll[0],e.ll[1]); placePop();
+}
+pop.addEventListener("click",e=>{if(e.target.closest(".x"))closePop();const m=e.target.closest("[data-more]");if(m)openDlg(m.dataset.more);});
+pinsG.addEventListener("click",e=>{const g=e.target.closest(".pin");if(g)showPin(+g.dataset.k);});
+pinsG.addEventListener("keydown",e=>{const g=e.target.closest(".pin");if(g&&(e.key==="Enter"||e.key===" ")){e.preventDefault();showPin(+g.dataset.k);}});
+extG.addEventListener("click",e=>{const c=e.target.closest(".ext");if(c)showExt(+c.dataset.e);});
+extG.addEventListener("keydown",e=>{const c=e.target.closest(".ext");if(c&&e.key==="Enter")showExt(+c.dataset.e);});
+
+function focusLocal(id,siteIdx=0){
+  const k=pins.findIndex(p=>p.l.id===id&&p.i===siteIdx); const p=pins[k];
+  const l=byId[id]; let w=110;
+  if(l.sites.length>1){const xs=l.sites.map(s=>P(s.ll[0],s.ll[1])[0]),ys=l.sites.map(s=>P(s.ll[0],s.ll[1])[1]);w=Math.max(110,(Math.max(...xs)-Math.min(...xs))*2.2,(Math.max(...ys)-Math.min(...ys))*2.2*FULL.w/FULL.h);}
+  if(l.region==="metro") w=Math.min(w,60);
+  const h=w*FULL.h/FULL.w; let cx=p.x, cy=p.y;
+  if(l.sites.length>1){const xs=l.sites.map(s=>P(s.ll[0],s.ll[1])[0]),ys=l.sites.map(s=>P(s.ll[0],s.ll[1])[1]);cx=(Math.max(...xs)+Math.min(...xs))/2;cy=(Math.max(...ys)+Math.min(...ys))/2;}
+  pop.hidden=true;
+  animateTo({x:cx-w/2,y:cy-h/2+h*.12,w,h});
+  setTimeout(()=>showPin(k),580);
+}
+// list + search
+const listEl=document.getElementById("list"), q=document.getElementById("q"), qc=document.getElementById("qcount");
+function hay(l){return [l.name,l.lead,...l.serves,...l.partners.map(p=>p[0]),...l.sites.map(s=>s.t+" "+s.a)].join(" ").toLowerCase();}
+function renderList(){
+  const term=q.value.trim().toLowerCase();
+  const items=L.filter(l=>!term||hay(l).includes(term)).sort((a,b)=>a.name.localeCompare(b.name));
+  qc.textContent=term?`${items.length} of 20 match`:"20 Locals";
+  listEl.innerHTML=items.length?items.map(l=>`<li><button data-id="${l.id}" aria-current="${l.id===selected}"><i style="background:${W[l.wave].c}"></i><b>${esc(l.name)}</b><span>${esc(l.sites.map(s=>s.t.replace(/ \(.*\)/,"")).join(" · "))} · ${esc(l.lead)}</span></button></li>`).join(""):`<li class="empty">No Local matches “${esc(q.value)}”. Try a town, council or provider.</li>`;
+  return items;
+}
+renderList();
+q.addEventListener("input",renderList);
+q.addEventListener("keydown",e=>{if(e.key==="Enter"){const it=renderList();if(it[0])focusLocal(it[0].id);}});
+listEl.addEventListener("click",e=>{const b=e.target.closest("button");if(b)focusLocal(b.dataset.id);});
+addEventListener("resize",placePop);
+draw();
+
+/* ---------- compare ---------- */
+function bars(el,rows,max){
+  el.innerHTML=rows.map(([k,v,col])=>`<div class="bar"><span>${esc(k)}</span><div class="track"><b style="width:${v/max*100}%;background:${col||"var(--accent)"}"></b></div><em>${v}</em></div>`).join("");
+}
+const leads={};L.forEach(l=>{leads[l.lead]=(leads[l.lead]||0)+1;});
+bars(document.getElementById("byLead"),Object.entries(leads).sort((a,b)=>b[1]-a[1]),8);
+bars(document.getElementById("byPartners"),[...L].sort((a,b)=>b.np-a.np).slice(0,6).map(l=>[l.name.split(" (")[0].replace("Benalla, Wangaratta & Mansfield","Benalla–Wang–Mans").replace("Greater Geelong & Queenscliffe","Geelong"),l.np,W[l.wave].c]),5);
+const tbody=document.querySelector("#tbl tbody");
+let sortK="name",sortD=1;
+const yn=v=>v?'<span class="yes">●</span>':'<span class="no">—</span>';
+function renderTable(){
+  const rows=[...L].sort((a,b)=>{let x=a[sortK],y=b[sortK];if(typeof x==="boolean"){x=+x;y=+y;}return (x>y?1:x<y?-1:0)*sortD||a.name.localeCompare(b.name);});
+  tbody.innerHTML=rows.map(l=>`<tr data-id="${l.id}" tabindex="0">
+    <td><span class="dotc" style="background:${W[l.wave].c}"></span><b>${esc(l.name)}</b></td>
+    <td>${l.region==="metro"?"Metro":"Regional"}</td><td class="num">${W[l.wave].lbl}</td><td class="num">${l.months}</td><td>${esc(l.lead)}</td>
+    <td class="num"><span class="mini">${"<i></i>".repeat(l.np)}</span> ${l.np}</td><td class="num c">${l.ns||"—"}</td><td class="num c">${l.nl}${l.fire?'<span style="color:var(--fire)">+</span>':""}</td>
+    <td class="c">${yn(l.walk)}</td><td class="c">${yn(l.ph)}</td><td class="c">${yn(l.ab)}</td><td class="c">${yn(l.lg)}</td></tr>`).join("");
+}
+renderTable();
+document.querySelectorAll("#tbl th").forEach(th=>th.querySelector("button").addEventListener("click",()=>{
+  const k=th.dataset.k; sortD=(sortK===k)?-sortD:(["months","np","ns","nl","walk","ph","ab","lg"].includes(k)?-1:1); sortK=k;
+  document.querySelectorAll("#tbl th").forEach(t=>t.removeAttribute("aria-sort"));
+  th.setAttribute("aria-sort",sortD===1?"ascending":"descending"); renderTable();}));
+document.querySelectorAll("#tbl th:not([aria-sort])").forEach(t=>t.setAttribute("aria-sort","none"));
+tbody.addEventListener("click",e=>{const r=e.target.closest("tr");if(r)openDlg(r.dataset.id);});
+tbody.addEventListener("keydown",e=>{const r=e.target.closest("tr");if(r&&e.key==="Enter")openDlg(r.dataset.id);});
+
+/* ---------- timeline chart ---------- */
+(function(){
+  const el=document.getElementById("chart"), x0=60,x1=870,y0=250,y1=30;
+  const t=(y,m)=>x0+((y-2021)*12+(m-1))/(6*12)*(x1-x0);   // Jan 2021 → Jan 2027
+  const v=n=>y0-(n/50)*(y0-y1);
+  let s="";
+  for(const n of [0,10,20,30,40,50]) s+=`<line x1="${x0}" x2="${x1}" y1="${v(n)}" y2="${v(n)}" stroke="var(--line)"/><text class="ax" x="${x0-10}" y="${v(n)+4}" text-anchor="end">${n}</text>`;
+  for(let y=2021;y<=2027;y++) s+=`<text class="ax" x="${t(y,1)}" y="${y0+22}" text-anchor="middle">${y}</text><line x1="${t(y,1)}" x2="${t(y,1)}" y1="${y0}" y2="${y0+6}" stroke="var(--muted)"/>`;
+  s+=`<line x1="${t(2021,3)}" x2="${t(2027,1)}" y1="${v(50)}" y2="${v(50)}" stroke="var(--fire)" stroke-dasharray="6 5" stroke-width="2"/><text class="ax" x="${t(2021,3)+4}" y="${v(50)-8}" style="fill:var(--fire)">Target: 50 Locals by end of 2026</text>`;
+  const steps=[[2022,12,6,1],[2023,12,13,2],[2025,11,20,3]];
+  let d=`M${t(2021,3)},${v(0)} L${t(2022,12)},${v(0)}`;
+  steps.forEach(([y,m,n],i)=>{d+=` L${t(y,m)},${v(n)}`;const nx=steps[i+1]?t(steps[i+1][0],steps[i+1][1]):t(2026,10);d+=` L${nx},${v(n)}`;});
+  s+=`<path d="${d} L${t(2026,10)},${v(0)} L${t(2021,3)},${v(0)} Z" fill="var(--accent)" opacity=".12"/><path d="${d}" fill="none" stroke="var(--accent)" stroke-width="2.5"/>`;
+  steps.forEach(([y,m,n,w])=>{s+=`<circle cx="${t(y,m)}" cy="${v(n)}" r="6" fill="${W[w].c}" stroke="var(--surface)" stroke-width="2"/><text class="ax" x="${t(y,m)+10}" y="${v(n)-8}" style="fill:var(--ink);font-weight:500">${n} Locals</text>`;});
+  s+=`<line x1="${t(2026,10)}" x2="${t(2026,10)}" y1="${y1}" y2="${y0}" stroke="var(--muted)" stroke-dasharray="2 4"/><text class="ax" x="${t(2026,10)-6}" y="${v(20)-26}" text-anchor="end">Today: 20 of 50</text>`;
+  s+=`<circle cx="${t(2021,3)}" cy="${v(0)}" r="5" fill="var(--surface)" stroke="var(--muted)" stroke-width="2"/><text class="ax" x="${t(2021,3)+8}" y="${v(0)-10}">Royal Commission report</text>`;
+  s+=`<line x1="${t(2026,1)}" x2="${t(2026,1)}" y1="${v(20)+4}" y2="${y0}" stroke="var(--fire)" stroke-width="1.5"/><text class="ax" x="${t(2026,1)-6}" y="${y0-8}" text-anchor="end" style="fill:var(--fire)">Bushfire extensions</text>`;
+  el.innerHTML=s;
+})();
+
+const MS=[
+ ["Mar 2021","","Royal Commission final report","Recommended up to 60 local adult services across Victoria by the end of 2026."],
+ ["Dec 2022","w1","First six Locals open",`${L.filter(l=>l.wave===1).map(l=>l.name).join(", ")}.`],
+ ["Mar 2023","w1","Walk-ins begin","Brimbank announces walk-in access with no appointment or referral."],
+ ["May 2023","","Over 1,000 people engaged","Government commits to 50 Locals by the end of 2026 and funds three more (Northcote, Narre Warren, Leongatha)."],
+ ["Dec 2023","w2","Seven more Locals start",`${L.filter(l=>l.wave===2).map(l=>l.name).join(", ")}. Most began by phone and telehealth, then opened sites in 2024–25.`],
+ ["Jun 2025","w2","23,000+ supported","Shepparton opens its permanent home."],
+ ["Oct 2025","w2","Bairnsdale opens","Almost 28,000 Victorians have now used a Local."],
+ ["Nov 2025","w3","Seven new Locals, 29,000+ supported",`${L.filter(l=>l.wave===3).map(l=>l.name).join(", ")}. Backed by $34.4m in the 2025/26 budget.`],
+ ["Jan 2026","fire","Bushfire extensions","$4.9m takes three Locals into Colac Otway, Towong, Mitchell and Murrindindi until 30 June 2027."],
+ ["Oct 2026","","20 running, 50 promised","Ballarat, the state's third-largest city, still has no Local. The government says the rollout is being staged."]
+];
+document.getElementById("ms").innerHTML=MS.map(([d,c,b,p])=>`<li class="${c}"><time>${d}</time><b>${esc(b)}</b><p>${esc(p)}</p></li>`).join("");
+</script>
+
 </body>
 </html>
