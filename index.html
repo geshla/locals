@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Levi's Lot Archive</title>
+  <meta name="description" content="A visual timeline and index of Levi's jeans: Red Tab lot numbers, Orange Tab, Levi's Vintage Clothing reissues, premium lines and collaborations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap">
+      <p class="kicker">An unofficial archive</p>
+      <h1>Levi's <span>Lot</span> Archive</h1>
+      <p class="lede">Every numbered fit, reissue, premium line and collaboration we could document, from the 1873 waist overall to today. Drawings are original fit diagrams; tap any jean for links to real photos.</p>
+    </div>
+  </header>
+
+  <nav class="controls" aria-label="View and filters">
+    <div class="wrap">
+      <div class="tabs" role="tablist">
+        <button role="tab" data-view="timeline" aria-selected="true">Timeline</button>
+        <button role="tab" data-view="models" aria-selected="false">Model index</button>
+        <button role="tab" data-view="collabs" aria-selected="false">Collaborations</button>
+      </div>
+      <div class="filters">
+        <div class="chips" id="chips" aria-label="Filter by line"></div>
+        <input id="search" type="search" placeholder="Search lot or name… e.g. 505, bell, 1947" aria-label="Search">
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap" id="main"></main>
+
+  <dialog id="detail" aria-labelledby="detail-title">
+    <div class="dlg" id="detail-body"></div>
+  </dialog>
+
+  <footer class="wrap foot">
+    <p>Not affiliated with Levi Strauss &amp; Co. Levi's, 501, Red Tab and related marks belong to their owner. Photos are linked, not copied; fit drawings are original illustrations. Dates marked <span class="approx-badge">c.</span> are approximate or not yet confirmed by a source.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
