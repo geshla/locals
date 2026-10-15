@@ -183,6 +183,21 @@ footer{padding-block:48px 40px;color:var(--muted);font-size:.84rem}
 footer ol{padding-left:18px;margin:8px 0 0;display:grid;gap:4px}
 footer a{word-break:break-word}
 
+.tile.ph{border:2px solid var(--accent)}
+.ribbon{position:absolute;left:0;right:0;bottom:0;background:var(--accent);color:var(--accent-ink);font-size:.74rem;font-weight:700;padding:5px 10px;letter-spacing:.02em}
+.callout{border:2px solid var(--accent);border-radius:12px;padding:12px 14px;display:grid;gap:4px;background:var(--bg)}
+.callout b{color:var(--accent);font-family:var(--display);font-size:1rem}
+.callout span{font-size:.9rem;color:var(--muted)}
+.phline{color:var(--accent)!important;font-weight:700}
+tr.ph td{background:var(--bg)}
+tr.ph td:first-child{box-shadow:inset 4px 0 0 var(--accent)}
+.thru{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:20px;align-items:center}
+.tstats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tstats div{display:grid;gap:2px}
+.tstats b{font-family:var(--display);font-size:1.35rem;font-weight:800;line-height:1.1}
+.tstats span{font-size:.82rem;color:var(--muted);line-height:1.35}
+.thru svg{display:block;width:100%;height:auto}
+@media (max-width:760px){.thru{grid-template-columns:1fr}}
 @media (max-width:760px){
   .mapbox{grid-template-columns:1fr}
   .side{border-right:0;border-bottom:1px solid var(--line);max-height:260px}
@@ -266,6 +281,19 @@ footer a{word-break:break-word}
     <div class="panel"><h3>Locals by lead provider</h3><div id="byLead"></div></div>
     <div class="panel"><h3>Partners per Local</h3><div id="byPartners"></div></div>
   </div>
+  <div class="panel" style="margin-bottom:18px">
+    <h3>Throughput</h3>
+    <div class="thru">
+      <div class="tstats">
+        <div><b class="num">29,000+</b><span>people supported network-wide, Dec 2022 to Nov 2025</span></div>
+        <div><b class="num">≈ 900</b><span>new people a month across the network (Jun–Nov 2025, derived)</span></div>
+        <div><b class="num">≈ 60</b><span>new people per Local per month (network average, derived)</span></div>
+        <div><b class="num">≈ 30</b><span>staff per Local (Wellways: about 60 across Wangaratta and Shepparton)</span></div>
+      </div>
+      <svg id="thruChart" viewBox="0 0 520 220" role="img" aria-label="Cumulative people supported by Locals, 2023 to 2025"></svg>
+    </div>
+    <p class="mapnote" style="margin:0">Caseloads for individual Locals aren't published. Averages are worked out from statewide totals: 24,600 by 30 Jun 2025 and 29,000 by Nov 2025, across 15 Locals.</p>
+  </div>
   <div class="tablewrap">
     <table id="tbl">
       <thead><tr>
@@ -274,6 +302,7 @@ footer a{word-break:break-word}
         <th data-k="began"><button>Opened</button></th>
         <th data-k="months"><button>Months</button></th>
         <th data-k="lead"><button>Lead provider</button></th>
+        <th data-k="lt"><button>Lead type</button></th>
         <th data-k="np"><button>Partners</button></th>
         <th data-k="ns"><button>Sites</button></th>
         <th data-k="nl"><button>LGAs</button></th>
@@ -312,6 +341,7 @@ footer a{word-break:break-word}
     <li><a href="https://www.health.vic.gov.au/mental-health-services/mental-health-and-wellbeing-locals" target="_blank" rel="noopener">Dept of Health: Locals, providers and bushfire support (updated 26 Aug 2026)</a></li>
     <li><a href="https://www.betterhealth.vic.gov.au/mental-health-wellbeing-locals" target="_blank" rel="noopener">Better Health Channel: addresses and phone numbers</a></li>
     <li><a href="https://www.health.vic.gov.au/publications/mental-health-wellbeing-locals-service-framework" target="_blank" rel="noopener">Locals Service Framework v2.0 (Jan 2026)</a></li>
+    <li><a href="https://www.health.vic.gov.au/sites/default/files/2025-10/department-of-health-annual-report-2024%E2%80%9325.pdf" target="_blank" rel="noopener">Dept of Health Annual Report 2024–25: 24,600+ supported to 30 Jun 2025</a></li>
     <li><a href="https://www.premier.vic.gov.au/seven-new-mental-health-and-wellbeing-locals-now-open" target="_blank" rel="noopener">Premier: Seven new Locals now open (26 Nov 2025)</a></li>
     <li><a href="https://www.premier.vic.gov.au/mental-health-local-opens-its-doors-east-gippsland" target="_blank" rel="noopener">Premier: East Gippsland Local opens (24 Oct 2025)</a></li>
     <li><a href="https://www.premier.vic.gov.au/shepparton-welcomes-new-mental-health-local-site" target="_blank" rel="noopener">Premier: Shepparton permanent site (27 Jun 2025)</a></li>
@@ -367,7 +397,7 @@ const L = [
  {id:"geel",name:"Greater Geelong & Queenscliffe",serves:["Greater Geelong","Queenscliffe"],region:"regional",wave:1,land:"coast",lead:"Barwon Health",
   partners:[["Wellways"],["ermha365"],["Wathaurong Aboriginal Co-operative","a"]],phone:"1800 573 151",walk:true,leadH:true,
   sites:[{t:"Geelong",a:"181 Moorabool Street, Geelong VIC 3220",ll:[-38.1533,144.3588]}],fire:"Colac Otway Shire",spt:true,
-  notes:["The only Local led by a public health service."]},
+  notes:[]},
  {id:"latr",name:"Latrobe",serves:["Latrobe"],region:"regional",wave:1,land:"plains",lead:"Neami National",
   partners:[["Drummond Street Services"],["Uniting Vic Tas"]],phone:"1800 571 142",walk:true,
   sites:[{t:"Morwell",a:"23 Hazelwood Road, Morwell VIC 3840",ll:[-38.2398,146.3956]}],spt:true,notes:[]},
@@ -421,7 +451,7 @@ const byId = Object.fromEntries(L.map(l=>[l.id,l]));
 L.forEach(l=>{
   const [y,m]=W[l.wave].d.split("-").map(Number);
   l.began=W[l.wave].d; l.months=(NOW.getFullYear()-y)*12+(NOW.getMonth()+1-m);
-  l.np=l.partners.length; l.ns=l.sites.filter(s=>!s.nosite).length; l.nl=l.serves.length;
+  l.np=l.partners.length; l.lt=l.leadH?"Public":"Community"; l.ns=l.sites.filter(s=>!s.nosite).length; l.nl=l.serves.length;
   l.ph=!!(l.leadH||l.partners.some(p=>p[1]==="h")); l.ab=l.partners.some(p=>p[1]==="a"); l.lg=l.partners.some(p=>p[1]==="l");
 });
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -472,8 +502,8 @@ function tagsFor(l){
 }
 function renderTiles(f="all"){
   const list=L.filter(l=>f==="all"||l.region===f||String(l.wave)===f).sort((a,b)=>a.name.localeCompare(b.name));
-  tilesEl.innerHTML=list.map(l=>`<button class="tile" data-id="${l.id}" aria-label="Open ${esc(l.name)}">
-    <div class="art">${art(l)}<span class="wave"><i style="background:${W[l.wave].c}"></i>${W[l.wave].lbl}</span></div>
+  tilesEl.innerHTML=list.map(l=>`<button class="tile${l.leadH?" ph":""}" data-id="${l.id}" aria-label="Open ${esc(l.name)}">
+    <div class="art">${art(l)}<span class="wave"><i style="background:${W[l.wave].c}"></i>${W[l.wave].lbl}</span>${l.leadH?'<span class="ribbon">Only Local led by a public health service</span>':""}</div>
     <div class="body"><h3>${esc(l.name)}</h3><div class="serves">${esc(l.serves.join(" · "))}</div><div class="meta">${tagsFor(l)}</div></div></button>`).join("");
 }
 renderTiles();
@@ -489,6 +519,7 @@ function openDlg(id){
   dlgBody.innerHTML=`<div class="art">${art(l)}</div><button class="close" aria-label="Close">✕</button>
   <div class="in">
     <div><div class="eyebrow" style="color:${W[l.wave].c}">Opened ${W[l.wave].lbl} · running ${yrs}</div><h3 id="dlgTitle">${esc(l.name)}</h3></div>
+    ${l.leadH?`<div class="callout"><b>The only Local led by a public health service</b><span>${esc(l.lead)} holds the lead role and runs the Local with its community partners. The other 19 Locals are led by community organisations: Wellways, Mind Australia, cohealth and Neami National.</span></div>`:""}
     <dl>
       <dt>Serves</dt><dd>${esc(l.serves.join(", "))}${l.fire?` <span class="tag fire">+ ${esc(l.fire)} (bushfire extension to Jun 2027)</span>`:""}</dd>
       <dt>Lead</dt><dd>${esc(l.lead)}</dd>
@@ -571,7 +602,7 @@ function showPin(k){
   pinsG.appendChild(pinsG.querySelector(`[data-k="${k}"]`));
   pop.innerHTML=`<button class="x" aria-label="Close">✕</button><div class="art">${art(l)}</div><div class="in">
     <div class="eyebrow" style="color:${W[l.wave].c}">Opened ${W[l.wave].lbl}</div>
-    <h3>${esc(l.name)}</h3><p><b>${esc(p.s.t)}</b><br>${p.s.nosite?"No public site listed — call "+esc(l.phone):esc(p.s.a)}</p>
+    <h3>${esc(l.name)}</h3>${l.leadH?'<p class="phline">Only Local led by a public health service</p>':""}<p><b>${esc(p.s.t)}</b><br>${p.s.nosite?"No public site listed — call "+esc(l.phone):esc(p.s.a)}</p>
     <p>${esc(l.lead)} + ${l.np} partner${l.np>1?"s":""} · <span class="phone">${esc(l.phone)}</span></p>
     <div class="row">${p.s.nosite?"":`<a class="btn" href="${gmaps(p.s.a)}" target="_blank" rel="noopener">Directions ↗</a>`}<button class="btn ghost" data-more="${l.id}">Details</button></div></div>`;
   pop.hidden=false; popAnchor=[p.x,p.y]; placePop();
@@ -621,7 +652,7 @@ draw();
 function bars(el,rows,max){
   el.innerHTML=rows.map(([k,v,col])=>`<div class="bar"><span>${esc(k)}</span><div class="track"><b style="width:${v/max*100}%;background:${col||"var(--accent)"}"></b></div><em>${v}</em></div>`).join("");
 }
-const leads={};L.forEach(l=>{leads[l.lead]=(leads[l.lead]||0)+1;});
+const leads={};L.forEach(l=>{const k=l.leadH?l.lead+" (public)":l.lead;leads[k]=(leads[k]||0)+1;});
 bars(document.getElementById("byLead"),Object.entries(leads).sort((a,b)=>b[1]-a[1]),8);
 bars(document.getElementById("byPartners"),[...L].sort((a,b)=>b.np-a.np).slice(0,6).map(l=>[l.name.split(" (")[0].replace("Benalla, Wangaratta & Mansfield","Benalla–Wang–Mans").replace("Greater Geelong & Queenscliffe","Geelong"),l.np,W[l.wave].c]),5);
 const tbody=document.querySelector("#tbl tbody");
@@ -629,9 +660,9 @@ let sortK="name",sortD=1;
 const yn=v=>v?'<span class="yes">●</span>':'<span class="no">—</span>';
 function renderTable(){
   const rows=[...L].sort((a,b)=>{let x=a[sortK],y=b[sortK];if(typeof x==="boolean"){x=+x;y=+y;}return (x>y?1:x<y?-1:0)*sortD||a.name.localeCompare(b.name);});
-  tbody.innerHTML=rows.map(l=>`<tr data-id="${l.id}" tabindex="0">
+  tbody.innerHTML=rows.map(l=>`<tr data-id="${l.id}" tabindex="0" class="${l.leadH?"ph":""}">
     <td><span class="dotc" style="background:${W[l.wave].c}"></span><b>${esc(l.name)}</b></td>
-    <td>${l.region==="metro"?"Metro":"Regional"}</td><td class="num">${W[l.wave].lbl}</td><td class="num">${l.months}</td><td>${esc(l.lead)}</td>
+    <td>${l.region==="metro"?"Metro":"Regional"}</td><td class="num">${W[l.wave].lbl}</td><td class="num">${l.months}</td><td>${esc(l.lead)}</td><td>${l.leadH?'<b style="color:var(--accent)">Public health service</b>':"Community organisation"}</td>
     <td class="num"><span class="mini">${"<i></i>".repeat(l.np)}</span> ${l.np}</td><td class="num c">${l.ns||"—"}</td><td class="num c">${l.nl}${l.fire?'<span style="color:var(--fire)">+</span>':""}</td>
     <td class="c">${yn(l.walk)}</td><td class="c">${yn(l.ph)}</td><td class="c">${yn(l.ab)}</td><td class="c">${yn(l.lg)}</td></tr>`).join("");
 }
@@ -664,13 +695,26 @@ tbody.addEventListener("keydown",e=>{const r=e.target.closest("tr");if(r&&e.key=
   el.innerHTML=s;
 })();
 
+(function(){
+  const el=document.getElementById("thruChart"),x0=48,x1=505,y0=190,y1=18;
+  const t=(y,m)=>x0+((y-2023)*12+(m-1))/36*(x1-x0), v=n=>y0-n/30000*(y0-y1);
+  const pts=[[2023,3,763,"763"],[2023,5,1000,"1,000+"],[2025,6,24600,"24,600"],[2025,10,28000,"≈28,000"],[2025,11,29000,"29,000+"]];
+  let s="";
+  for(const n of [0,10000,20000,30000]) s+=`<line x1="${x0}" x2="${x1}" y1="${v(n)}" y2="${v(n)}" stroke="var(--line)"/><text class="ax" x="${x0-8}" y="${v(n)+4}" text-anchor="end">${n/1000}k</text>`;
+  for(const y of [2023,2024,2025,2026]) s+=`<text class="ax" x="${t(y,1)}" y="${y0+20}" text-anchor="middle">${y}</text>`;
+  s+=`<path d="M${pts.map(p=>t(p[0],p[1])+","+v(p[2])).join(" L")}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="0"/>`;
+  s+=`<text class="ax" x="${t(2024,3)}" y="${v(14000)}" text-anchor="middle" style="font-style:italic">no published figures</text>`;
+  pts.forEach((p,i)=>{const x=t(p[0],p[1]),y=v(p[2]);s+=`<circle cx="${x}" cy="${y}" r="4.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>`;
+    if(i!==1&&i!==3) s+=`<text class="ax" x="${x+(i===4?-6:8)}" y="${y+(i===0?-10:i===4?-12:16)}" text-anchor="${i===4?"end":"start"}" style="fill:var(--ink)">${p[3]}</text>`;});
+  el.innerHTML=s;
+})();
 const MS=[
  ["Mar 2021","","Royal Commission final report","Recommended up to 60 local adult services across Victoria by the end of 2026."],
  ["Dec 2022","w1","First six Locals open",`${L.filter(l=>l.wave===1).map(l=>l.name).join(", ")}.`],
  ["Mar 2023","w1","Walk-ins begin","Brimbank announces walk-in access with no appointment or referral."],
  ["May 2023","","Over 1,000 people engaged","Government commits to 50 Locals by the end of 2026 and funds three more (Northcote, Narre Warren, Leongatha)."],
  ["Dec 2023","w2","Seven more Locals start",`${L.filter(l=>l.wave===2).map(l=>l.name).join(", ")}. Most began by phone and telehealth, then opened sites in 2024–25.`],
- ["Jun 2025","w2","23,000+ supported","Shepparton opens its permanent home."],
+ ["Jun 2025","w2","24,600+ supported","Shepparton opens its permanent home."],
  ["Oct 2025","w2","Bairnsdale opens","Almost 28,000 Victorians have now used a Local."],
  ["Nov 2025","w3","Seven new Locals, 29,000+ supported",`${L.filter(l=>l.wave===3).map(l=>l.name).join(", ")}. Backed by $34.4m in the 2025/26 budget.`],
  ["Jan 2026","fire","Bushfire extensions","$4.9m takes three Locals into Colac Otway, Towong, Mitchell and Murrindindi until 30 June 2027."],
